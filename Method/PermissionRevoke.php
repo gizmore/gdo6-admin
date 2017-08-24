@@ -57,6 +57,6 @@ class PermissionRevoke extends MethodForm
 		UserPermission::table()->deleteWhere($condition)->exec();
 		$affected = Database::instance()->affectedRows();
 		$response = $affected > 0 ? $this->message('msg_perm_revoked') : $this->error('err_nothing_happened');
-		return $response->add($this->renderForm());
+		return $response->add($this->renderPage());
 	}
 }
