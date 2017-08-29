@@ -2,7 +2,7 @@
 namespace GDO\Admin\Method;
 
 use GDO\Core\Method;
-use GDO\Core\Module;
+use GDO\Core\GDO_Module;
 use GDO\DB\Cache;
 use GDO\Table\MethodSort;
 /**
@@ -20,12 +20,12 @@ final class ModuleSort extends MethodSort
 	 */
 	public function getPermission() { return 'staff'; }
 
-	public function gdoSortObjects() { return Module::table(); }
+	public function gdoSortObjects() { return GDO_Module::table(); }
 
 	public function execute()
 	{
 		$response = parent::execute();
-		Cache::unset('gwf_modules');
+		Cache::unset('gdo_modules');
 		return $response;
 	}
 }

@@ -6,7 +6,7 @@ use GDO\Form\GDT_AntiCSRF;
 use GDO\Form\GDT_Form;
 use GDO\Form\GDT_Submit;
 use GDO\Form\MethodForm;
-use GDO\User\User;
+use GDO\User\GDO_User;
 use GDO\Util\Common;
 use GDO\Util\BCrypt;
 /**
@@ -25,7 +25,7 @@ class UserEdit extends MethodForm
 	
 	public function execute()
 	{
-		if (!($this->user = User::getById(Common::getRequestString('id'))))
+		if (!($this->user = GDO_User::getById(Common::getRequestString('id'))))
 		{
 			return $this->error('err_user')->add($this->execMethod('Users'));
 		}

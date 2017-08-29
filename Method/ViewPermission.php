@@ -9,9 +9,9 @@ use GDO\Table\GDT_Table;
 use GDO\Table\MethodQueryTable;
 use GDO\UI\GDT_Button;
 use GDO\User\GDT_User;
-use GDO\User\Permission;
-use GDO\User\User;
-use GDO\User\UserPermission;
+use GDO\User\GDO_Permission;
+use GDO\User\GDO_User;
+use GDO\User\GDO_UserPermission;
 use GDO\Util\Common;
 
 class ViewPermission extends MethodQueryTable
@@ -29,13 +29,13 @@ class ViewPermission extends MethodQueryTable
 	
 	public function init()
 	{
-		$this->permission = Permission::table()->find(Common::getRequestString('permission'));
+	    $this->permission = GDO_Permission::table()->find(Common::getRequestString('permission'));
 	}
 	
 	public function getHeaders()
 	{
-		$users = User::table();
-		$perms = UserPermission::table();
+		$users = GDO_User::table();
+		$perms = GDO_UserPermission::table();
 		return array(
 			GDT_Count::make('count'),
 			GDT_User::make('perm_user_id'),
@@ -47,12 +47,12 @@ class ViewPermission extends MethodQueryTable
 	
 	public function onDecorateTable(GDT_Table $table)
 	{
-		$table->fetchAs(User::table());
+		$table->fetchAs(GDO_User::table());
 	}
 	
 	public function getQuery()
 	{
-		return UserPermission::table()->select('gwf_user.*, gwf_userpermission.*')->joinObject('perm_user_id')->where('perm_perm_id='.$this->permission->getID())->uncached();
+		return GDO_UserPermission::table()->select('gdo_user.*, gdo_userpermission.*')->joinObject('perm_user_id')->where('perm_perm_id='.$this->permission->getID())->uncached();
 	}
 	
 	

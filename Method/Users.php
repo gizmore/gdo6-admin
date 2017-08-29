@@ -6,9 +6,9 @@ use GDO\Table\MethodQueryTable;
 use GDO\Type\GDT_String;
 use GDO\UI\GDT_IconButton;
 use GDO\User\GDT_Username;
-use GDO\User\User;
+use GDO\User\GDO_User;
 /**
- * User table for admins
+ * GDO_User table for admins
  * 
  * @author gizmore
  * @see User
@@ -27,7 +27,7 @@ class Users extends MethodQueryTable
 	
 	public function getGDO()
 	{
-		return User::table();
+		return GDO_User::table();
 	}
 	
 	public function getQuery()

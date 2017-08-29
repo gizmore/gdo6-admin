@@ -3,8 +3,7 @@ namespace GDO\Admin\Method;
 
 use GDO\Admin\GDT_ModuleVersionFS;
 use GDO\Admin\MethodAdmin;
-use GDO\Core\Application;
-use GDO\Core\Module;
+use GDO\Core\GDO_Module;
 use GDO\DB\ArrayResult;
 use GDO\DB\GDT_Id;
 use GDO\Table\GDT_Table;
@@ -31,14 +30,14 @@ class Modules extends MethodTable
 	public function getPermission() { return 'staff'; }
 	
 	/**
-	 * @var Module[]
+	 * @var GDO_Module[]
 	 */
 	private $modules;
 	
 	public function execute()
 	{
 		$this->modules = ModuleLoader::instance()->loadModules(false, true);
-		$this->modules = Module::table()->sort($this->modules, 'module_sort');
+		$this->modules = GDO_Module::table()->sort($this->modules, 'module_sort');
 		$response = parent::execute();
 		$navbar = $this->renderNavBar();
 		$info = $this->renderInfoBox();
@@ -52,7 +51,7 @@ class Modules extends MethodTable
 	
 	public function getResult()
 	{
-		return new ArrayResult($this->modules, Module::table());
+	    return new ArrayResult($this->modules, GDO_Module::table());
 	}
 	
 	public function getResultCount()

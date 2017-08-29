@@ -9,9 +9,9 @@ use GDO\Form\GDT_Submit;
 use GDO\Form\MethodForm;
 use GDO\User\GDT_Permission;
 use GDO\User\GDT_User;
-use GDO\User\Permission;
-use GDO\User\User;
-use GDO\User\UserPermission;
+use GDO\User\GDO_Permission;
+use GDO\User\GDO_User;
+use GDO\User\GDO_UserPermission;
 use GDO\Util\Common;
 
 class PermissionRevoke extends MethodForm
@@ -32,8 +32,8 @@ class PermissionRevoke extends MethodForm
 	
 	public function init()
 	{
-		$this->user = User::table()->find(Common::getRequestString('user'));
-		$this->permission = Permission::table()->find(Common::getRequestString('perm'));
+		$this->user = GDO_User::table()->find(Common::getRequestString('user'));
+		$this->permission = GDO_Permission::table()->find(Common::getRequestString('perm'));
 	}
 	
 	public function execute()
@@ -54,7 +54,7 @@ class PermissionRevoke extends MethodForm
 	public function formValidated(GDT_Form $form)
 	{
 		$condition = sprintf('perm_user_id=%s AND perm_perm_id=%s', $form->getFormVar('perm_user_id'), $form->getFormVar('perm_perm_id'));
-		UserPermission::table()->deleteWhere($condition)->exec();
+		GDO_UserPermission::table()->deleteWhere($condition)->exec();
 		$affected = Database::instance()->affectedRows();
 		$response = $affected > 0 ? $this->message('msg_perm_revoked') : $this->error('err_nothing_happened');
 		return $response->add($this->renderPage());

@@ -2,8 +2,7 @@
 namespace GDO\Admin\Method;
 
 use GDO\Admin\MethodAdmin;
-use GDO\Core\Application;
-use GDO\Core\Module;
+use GDO\Core\GDO_Module;
 use GDO\DB\Cache;
 use GDO\Form\GDT_AntiCSRF;
 use GDO\Form\GDT_Form;
@@ -21,7 +20,7 @@ class Install extends MethodForm
 	public function getPermission() { return 'admin'; }
 	
 	/**
-	 * @var Module
+	 * @var GDO_Module
 	 */
 	private $configModule;
 	
@@ -61,7 +60,7 @@ class Install extends MethodForm
 		{
 			return parent::formInvalid($form);
 		}
-		Cache::unset('gwf_modules');
+		Cache::unset('gdo_modules');
 		return call_user_func(array($this, "execute_$button"));
 	}
 	

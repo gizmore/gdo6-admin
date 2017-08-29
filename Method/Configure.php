@@ -2,10 +2,9 @@
 namespace GDO\Admin\Method;
 
 use GDO\Admin\MethodAdmin;
-use GDO\Core\Application;
 use GDO\Core\GDT_Hook;
-use GDO\Core\Module;
-use GDO\Core\ModuleVar;
+use GDO\Core\GDO_Module;
+use GDO\Core\GDO_ModuleVar;
 use GDO\DB\Cache;
 use GDO\File\GDT_Path;
 use GDO\Form\GDT_AntiCSRF;
@@ -23,7 +22,7 @@ class Configure extends MethodForm
 	use MethodAdmin;
 	
 	/**
-	 * @var Module
+	 * @var GDO_Module
 	 */
 	private $configModule;
 	
@@ -78,7 +77,7 @@ class Configure extends MethodForm
 		{
 			if ($gdoType->hasChanged() && $gdoType->writable && $gdoType->editable)
 			{
-				ModuleVar::createModuleVar($mod, $gdoType);
+			    GDO_ModuleVar::createModuleVar($mod, $gdoType);
 				$info[] = t('msg_modulevar_changed', [$gdoType->name, html($gdoType->initial), html($gdoType->getVar())]);
 				$moduleVarsChanged = true;
 			}
@@ -92,7 +91,7 @@ class Configure extends MethodForm
 		
 		if (count($info) > 0)
 		{
-			Cache::unset('gwf_modules');
+			Cache::unset('gdo_modules');
 		}
 		
 		# Announce

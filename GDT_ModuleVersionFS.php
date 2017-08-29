@@ -1,14 +1,14 @@
 <?php
 namespace GDO\Admin;
 
-use GDO\Core\Module;
+use GDO\Core\GDO_Module;
 use GDO\DB\GDO;
 use GDO\Type\GDT_Int;
 
 final class GDT_ModuleVersionFS extends GDT_Int
 {
 	/**
-	 * @return Module
+	 * @return GDO_Module
 	 */
 	public function getModule() { return $this->gdo; }
 	
