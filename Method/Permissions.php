@@ -2,11 +2,11 @@
 namespace GDO\Admin\Method;
 
 use GDO\Admin\MethodAdmin;
-use GDO\Table\GDO_Count;
+use GDO\Table\GDT_Count;
 use GDO\Table\MethodQueryTable;
-use GDO\Type\GDO_Int;
-use GDO\Type\GDO_Name;
-use GDO\UI\GDO_Button;
+use GDO\Type\GDT_Int;
+use GDO\Type\GDT_Name;
+use GDO\UI\GDT_Button;
 use GDO\User\Permission;
 /**
  * Overview of modules
@@ -25,10 +25,10 @@ class Permissions extends MethodQueryTable
 	public function getHeaders()
 	{
 		return array(
-			GDO_Count::make(),
-			GDO_Button::make('edit'),
-			GDO_Name::make('perm_name'),
-			GDO_Int::make('user_count')->virtual(),
+			GDT_Count::make(),
+			GDT_Button::make('edit'),
+			GDT_Name::make('perm_name'),
+			GDT_Int::make('user_count')->virtual(),
 		);
 	}
 	

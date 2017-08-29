@@ -2,8 +2,8 @@
 namespace GDO\Admin;
 
 use GDO\Core\Module;
-use GDO\Template\GDO_Bar;
-use GDO\UI\GDO_Link;
+use GDO\Template\GDT_Bar;
+use GDO\UI\GDT_Link;
 use GDO\User\User;
 
 class Module_Admin extends Module
@@ -17,11 +17,11 @@ class Module_Admin extends Module
 	###############
 	### Navbars ###
 	###############
-	public function hookRightBar(GDO_Bar $navbar)
+	public function hookRightBar(GDT_Bar $navbar)
 	{
 		if (User::current()->isAdmin())
 		{
-			$navbar->addField(GDO_Link::make('btn_admin')->label('btn_admin')->href($this->getMethodHREF('Modules')));
+			$navbar->addField(GDT_Link::make('btn_admin')->label('btn_admin')->href($this->getMethodHREF('Modules')));
 		}
 	}
 	

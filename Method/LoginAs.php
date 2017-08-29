@@ -2,13 +2,13 @@
 namespace GDO\Admin\Method;
 
 use GDO\Admin\MethodAdmin;
-use GDO\Form\GDO_AntiCSRF;
-use GDO\Form\GDO_Form;
-use GDO\Form\GDO_Submit;
+use GDO\Form\GDT_AntiCSRF;
+use GDO\Form\GDT_Form;
+use GDO\Form\GDT_Submit;
 use GDO\Form\MethodForm;
 use GDO\Login\Module_Login;
 use GDO\Login\Method\Form;
-use GDO\User\GDO_User;
+use GDO\User\GDT_User;
 
 final class LoginAs extends MethodForm
 {
@@ -16,11 +16,11 @@ final class LoginAs extends MethodForm
 	
 	public function getPermission() { return 'admin'; }
 	
-	public function createForm(GDO_Form $form)
+	public function createForm(GDT_Form $form)
 	{
-		$form->addField(GDO_User::make('user_name')->notNull());
-		$form->addField(GDO_Submit::make()->label('btn_login_as'));
-		$form->addField(GDO_AntiCSRF::make());
+		$form->addField(GDT_User::make('user_name')->notNull());
+		$form->addField(GDT_Submit::make()->label('btn_login_as'));
+		$form->addField(GDT_AntiCSRF::make());
 	}
 	
 	public function execute()
@@ -36,7 +36,7 @@ final class LoginAs extends MethodForm
 		return Module_Login::instance()->getMethod('Form');
 	}
 	
-	public function formValidated(GDO_Form $form)
+	public function formValidated(GDT_Form $form)
 	{
 		$user = $form->getField('user_name')->getUser();
 		return $this->loginForm()->loginSuccess($user);

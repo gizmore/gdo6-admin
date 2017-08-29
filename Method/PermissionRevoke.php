@@ -3,12 +3,12 @@ namespace GDO\Admin\Method;
 
 use GDO\Admin\MethodAdmin;
 use GDO\DB\Database;
-use GDO\Form\GDO_AntiCSRF;
-use GDO\Form\GDO_Form;
-use GDO\Form\GDO_Submit;
+use GDO\Form\GDT_AntiCSRF;
+use GDO\Form\GDT_Form;
+use GDO\Form\GDT_Submit;
 use GDO\Form\MethodForm;
-use GDO\User\GDO_Permission;
-use GDO\User\GDO_User;
+use GDO\User\GDT_Permission;
+use GDO\User\GDT_User;
 use GDO\User\Permission;
 use GDO\User\User;
 use GDO\User\UserPermission;
@@ -41,17 +41,17 @@ class PermissionRevoke extends MethodForm
 		return $this->renderPermTabs()->add(parent::execute());
 	}
 	
-	public function createForm(GDO_Form $form)
+	public function createForm(GDT_Form $form)
 	{
 		$form->addFields(array(
-			GDO_User::make('perm_user_id')->notNull()->value($this->user ? $this->user->getID() : '0'),
-			GDO_Permission::make('perm_perm_id')->notNull()->value($this->permission ? $this->permission->getID() : '0'),
-			GDO_Submit::make(),
-			GDO_AntiCSRF::make(),
+			GDT_User::make('perm_user_id')->notNull()->value($this->user ? $this->user->getID() : '0'),
+			GDT_Permission::make('perm_perm_id')->notNull()->value($this->permission ? $this->permission->getID() : '0'),
+			GDT_Submit::make(),
+			GDT_AntiCSRF::make(),
 		));
 	}
 	
-	public function formValidated(GDO_Form $form)
+	public function formValidated(GDT_Form $form)
 	{
 		$condition = sprintf('perm_user_id=%s AND perm_perm_id=%s', $form->getFormVar('perm_user_id'), $form->getFormVar('perm_perm_id'));
 		UserPermission::table()->deleteWhere($condition)->exec();

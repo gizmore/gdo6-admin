@@ -3,9 +3,9 @@ namespace GDO\Admin;
 
 use GDO\Core\Module;
 use GDO\DB\GDO;
-use GDO\Type\GDO_Int;
+use GDO\Type\GDT_Int;
 
-final class GDO_ModuleVersionFS extends GDO_Int
+final class GDT_ModuleVersionFS extends GDT_Int
 {
 	/**
 	 * @return Module

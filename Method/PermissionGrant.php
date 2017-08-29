@@ -2,9 +2,9 @@
 namespace GDO\Admin\Method;
 
 use GDO\Admin\MethodAdmin;
-use GDO\Form\GDO_AntiCSRF;
-use GDO\Form\GDO_Form;
-use GDO\Form\GDO_Submit;
+use GDO\Form\GDT_AntiCSRF;
+use GDO\Form\GDT_Form;
+use GDO\Form\GDT_Submit;
 use GDO\Form\MethodForm;
 use GDO\User\Permission;
 use GDO\User\User;
@@ -21,18 +21,18 @@ class PermissionGrant extends MethodForm
 		return $this->renderPermTabs()->add(parent::execute());
 	}
 	
-	public function createForm(GDO_Form $form)
+	public function createForm(GDT_Form $form)
 	{
 		$gdo = UserPermission::table();
 		$form->addFields(array(
 			$gdo->gdoColumn('perm_user_id'),
 			$gdo->gdoColumn('perm_perm_id'),
-			GDO_Submit::make(),
-			GDO_AntiCSRF::make(),
+			GDT_Submit::make(),
+			GDT_AntiCSRF::make(),
 		));
 	}
 	
-	public function formValidated(GDO_Form $form)
+	public function formValidated(GDT_Form $form)
 	{
 		$userpermission = UserPermission::blank($form->getFormData())->replace();
 		$permission = $userpermission->getPermission();

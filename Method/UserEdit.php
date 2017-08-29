@@ -2,9 +2,9 @@
 namespace GDO\Admin\Method;
 
 use GDO\Admin\MethodAdmin;
-use GDO\Form\GDO_AntiCSRF;
-use GDO\Form\GDO_Form;
-use GDO\Form\GDO_Submit;
+use GDO\Form\GDT_AntiCSRF;
+use GDO\Form\GDT_Form;
+use GDO\Form\GDT_Submit;
 use GDO\Form\MethodForm;
 use GDO\User\User;
 use GDO\Util\Common;
@@ -32,7 +32,7 @@ class UserEdit extends MethodForm
 		return $this->renderNavBar()->add(parent::execute());
 	}
 	
-	public function createForm(GDO_Form $form)
+	public function createForm(GDT_Form $form)
 	{
 		$this->title(t('ft_admin_useredit', [sitename(), $this->user->displayNameLabel()]));
 		foreach ($this->user->gdoColumnsCache() as $gdoType)
@@ -40,13 +40,13 @@ class UserEdit extends MethodForm
 			$form->addField($gdoType);
 		}
 		$form->getField('user_id')->writable(false);
-		$form->addField(GDO_Submit::make());
-		$form->addField(GDO_AntiCSRF::make());
+		$form->addField(GDT_Submit::make());
+		$form->addField(GDT_AntiCSRF::make());
 		$form->withGDOValuesFrom($this->user);
 		$form->getField('user_password')->initial('');
 	}
 	
-	public function formValidated(GDO_Form $form)
+	public function formValidated(GDT_Form $form)
 	{
 		$values = $form->getFormData();
 		$password = $values['user_password'];

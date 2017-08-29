@@ -1,20 +1,20 @@
 <?php
 namespace GDO\Admin\Method;
 
-use GDO\Admin\GDO_ModuleVersionFS;
+use GDO\Admin\GDT_ModuleVersionFS;
 use GDO\Admin\MethodAdmin;
 use GDO\Core\Application;
 use GDO\Core\Module;
 use GDO\DB\ArrayResult;
-use GDO\DB\GDO_Id;
-use GDO\Table\GDO_Table;
+use GDO\DB\GDT_Id;
+use GDO\Table\GDT_Table;
 use GDO\Table\MethodTable;
-use GDO\Template\GDO_Box;
-use GDO\Type\GDO_Checkbox;
-use GDO\Type\GDO_Decimal;
-use GDO\Type\GDO_Int;
-use GDO\Type\GDO_Name;
-use GDO\UI\GDO_Button;
+use GDO\Template\GDT_Box;
+use GDO\Type\GDT_Checkbox;
+use GDO\Type\GDT_Decimal;
+use GDO\Type\GDT_Int;
+use GDO\Type\GDT_Name;
+use GDO\UI\GDT_Button;
 use GDO\Core\ModuleLoader;
 /**
  * Overview of modules
@@ -47,7 +47,7 @@ class Modules extends MethodTable
 	
 	public function renderInfoBox()
 	{
-		return GDO_Box::make()->html(t('msg_there_are_updates'))->render();
+		return GDT_Box::make()->html(t('msg_there_are_updates'))->render();
 	}
 	
 	public function getResult()
@@ -63,20 +63,20 @@ class Modules extends MethodTable
 	public function getHeaders()
 	{
 		return array(
-// 			GDO_DeleteButton::make(),
-			GDO_Id::make('module_id'),
-			GDO_Int::make('module_priority')->unsigned()->label('priority'),
-			GDO_Checkbox::make('module_enabled')->label('enabled'),
-			GDO_Name::make('module_name')->label('name'),
-			GDO_Decimal::make('module_version')->label('version_db'),
-			GDO_ModuleVersionFS::make('module_version_fs')->label('version_fs'),
-// 			GDO_Button::make('install_module')->label('btn_install'),
-			GDO_Button::make('configure_module')->label('btn_configure'),
-			GDO_Button::make('administrate_module')->label('btn_admin'),
+// 			GDT_DeleteButton::make(),
+			GDT_Id::make('module_id'),
+			GDT_Int::make('module_priority')->unsigned()->label('priority'),
+			GDT_Checkbox::make('module_enabled')->label('enabled'),
+			GDT_Name::make('module_name')->label('name'),
+			GDT_Decimal::make('module_version')->label('version_db'),
+			GDT_ModuleVersionFS::make('module_version_fs')->label('version_fs'),
+// 			GDT_Button::make('install_module')->label('btn_install'),
+			GDT_Button::make('configure_module')->label('btn_configure'),
+			GDT_Button::make('administrate_module')->label('btn_admin'),
 		);
 	}
 	
-	public function createTable(GDO_Table $table)
+	public function createTable(GDT_Table $table)
 	{
 		$table->sortable(href('Admin', 'ModuleSort'));
 	}

@@ -2,13 +2,13 @@
 namespace GDO\Admin\Method;
 
 use GDO\Admin\MethodAdmin;
-use GDO\DB\GDO_CreatedAt;
-use GDO\DB\GDO_CreatedBy;
-use GDO\Table\GDO_Count;
-use GDO\Table\GDO_Table;
+use GDO\DB\GDT_CreatedAt;
+use GDO\DB\GDT_CreatedBy;
+use GDO\Table\GDT_Count;
+use GDO\Table\GDT_Table;
 use GDO\Table\MethodQueryTable;
-use GDO\UI\GDO_Button;
-use GDO\User\GDO_User;
+use GDO\UI\GDT_Button;
+use GDO\User\GDT_User;
 use GDO\User\Permission;
 use GDO\User\User;
 use GDO\User\UserPermission;
@@ -37,15 +37,15 @@ class ViewPermission extends MethodQueryTable
 		$users = User::table();
 		$perms = UserPermission::table();
 		return array(
-			GDO_Count::make('count'),
-			GDO_User::make('perm_user_id'),
-			GDO_CreatedAt::make('perm_created_at'),
-			GDO_CreatedBy::make('perm_created_by'),
-			GDO_Button::make('perm_revoke'),
+			GDT_Count::make('count'),
+			GDT_User::make('perm_user_id'),
+			GDT_CreatedAt::make('perm_created_at'),
+			GDT_CreatedBy::make('perm_created_by'),
+			GDT_Button::make('perm_revoke'),
 		);
 	}
 	
-	public function onDecorateTable(GDO_Table $table)
+	public function onDecorateTable(GDT_Table $table)
 	{
 		$table->fetchAs(User::table());
 	}

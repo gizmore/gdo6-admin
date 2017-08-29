@@ -5,9 +5,9 @@ use GDO\Admin\MethodAdmin;
 use GDO\Core\Application;
 use GDO\Core\Module;
 use GDO\DB\Cache;
-use GDO\Form\GDO_AntiCSRF;
-use GDO\Form\GDO_Form;
-use GDO\Form\GDO_Submit;
+use GDO\Form\GDT_AntiCSRF;
+use GDO\Form\GDT_Form;
+use GDO\Form\GDT_Submit;
 use GDO\Form\MethodForm;
 use GDO\Util\Common;
 use GDO\Install\Installer;
@@ -43,15 +43,15 @@ class Install extends MethodForm
 		}
 	}
 	
-	public function createForm(GDO_Form $form)
+	public function createForm(GDT_Form $form)
 	{
 		$this->title(t('ft_admin_install', [sitename(), $this->configModule->getName()]));
-		$form->addField(GDO_Submit::make('install')->label('btn_install'));
-// 		$form->addField(GDO_Submit::make('wipe')->label('btn_module_wipe'));
-		$form->addField(GDO_Submit::make('uninstall')->label('btn_uninstall'));
-		$form->addField(GDO_Submit::make('enable')->label('btn_enable'));
-		$form->addField(GDO_Submit::make('disable')->label('btn_disable'));
-		$form->addField(GDO_AntiCSRF::make());
+		$form->addField(GDT_Submit::make('install')->label('btn_install'));
+// 		$form->addField(GDT_Submit::make('wipe')->label('btn_module_wipe'));
+		$form->addField(GDT_Submit::make('uninstall')->label('btn_uninstall'));
+		$form->addField(GDT_Submit::make('enable')->label('btn_enable'));
+		$form->addField(GDT_Submit::make('disable')->label('btn_disable'));
+		$form->addField(GDT_AntiCSRF::make());
 	}
 	
 	public function executeButton(string $button)

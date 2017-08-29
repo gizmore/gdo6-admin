@@ -3,18 +3,18 @@ namespace GDO\Admin\Method;
 
 use GDO\Admin\MethodAdmin;
 use GDO\Core\Application;
-use GDO\Core\GDO_Hook;
+use GDO\Core\GDT_Hook;
 use GDO\Core\Module;
 use GDO\Core\ModuleVar;
 use GDO\DB\Cache;
-use GDO\File\GDO_Path;
-use GDO\Form\GDO_AntiCSRF;
-use GDO\Form\GDO_Form;
-use GDO\Form\GDO_Submit;
+use GDO\File\GDT_Path;
+use GDO\Form\GDT_AntiCSRF;
+use GDO\Form\GDT_Form;
+use GDO\Form\GDT_Submit;
 use GDO\Form\MethodForm;
-use GDO\Type\GDO_Name;
-use GDO\Type\GDO_Version;
-use GDO\UI\GDO_Divider;
+use GDO\Type\GDT_Name;
+use GDO\Type\GDT_Version;
+use GDO\UI\GDT_Divider;
 use GDO\Util\Common;
 use GDO\Core\ModuleLoader;
 
@@ -45,29 +45,29 @@ class Configure extends MethodForm
 		return $this->execMethod('Install');
 	}
 	
-	public function createForm(GDO_Form $form)
+	public function createForm(GDT_Form $form)
 	{
 		$mod = $this->configModule;
 		$this->title(t('ft_admin_configure', [sitename(), $this->configModule->getName()]));
-		$form->addField(GDO_Name::make('module_name')->writable(false));
-		$form->addField(GDO_Path::make('module_path')->writable(false)->initial($mod->filePath()));
-		$form->addField(GDO_Version::make('module_version')->writable(false));
-		$form->addField(GDO_Version::make('version_available')->writable(false)->value($mod->module_version));
+		$form->addField(GDT_Name::make('module_name')->writable(false));
+		$form->addField(GDT_Path::make('module_path')->writable(false)->initial($mod->filePath()));
+		$form->addField(GDT_Version::make('module_version')->writable(false));
+		$form->addField(GDT_Version::make('version_available')->writable(false)->value($mod->module_version));
 		if ($config = $mod->getConfigCache())
 		{
-			$form->addField(GDO_Divider::make('div1')->label('form_div_config_vars'));
+			$form->addField(GDT_Divider::make('div1')->label('form_div_config_vars'));
 			foreach ($config as $gdoType)
 			{
 				$form->addField($gdoType);
 			}
 		}
-		$form->addField(GDO_Submit::make()->label('btn_save'));
-		$form->addField(GDO_AntiCSRF::make());
+		$form->addField(GDT_Submit::make()->label('btn_save'));
+		$form->addField(GDT_AntiCSRF::make());
 		# Prefill with module
 		$form->withGDOValuesFrom($this->configModule);
 	}
 
-	public function formValidated(GDO_Form $form)
+	public function formValidated(GDT_Form $form)
 	{
 		$mod = $this->configModule;
 		
@@ -86,7 +86,7 @@ class Configure extends MethodForm
 		
 		if ($moduleVarsChanged)
 		{
-		    GDO_Hook::call('ModuleVarsChanged', $mod);
+		    GDT_Hook::call('ModuleVarsChanged', $mod);
 		}
 		
 		
