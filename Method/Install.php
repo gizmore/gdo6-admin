@@ -79,12 +79,14 @@ class Install extends MethodForm
 	public function execute_enable()
 	{
 		$this->configModule->saveVar('module_enabled', '1');
+		Cache::unset('gdo_modules');
 		return Message::message('msg_module_enabled', [$this->configModule->getName()]);
 	}
 
 	public function execute_disable()
 	{
 		$this->configModule->saveVar('module_enabled', '0');
+		Cache::unset('gdo_modules');
 		return Message::message('msg_module_disabled', [$this->configModule->getName()]);
 	}
 	

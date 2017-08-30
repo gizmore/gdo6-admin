@@ -25,6 +25,7 @@ class Modules extends MethodTable
 {
 	use MethodAdmin;
 	
+	public function isFiltered() { return true; }
 	public function isPaginated() { return false; }
 	
 	public function getPermission() { return 'staff'; }
@@ -51,7 +52,7 @@ class Modules extends MethodTable
 	
 	public function getResult()
 	{
-	    return new ArrayResult($this->modules, GDO_Module::table());
+	    return ArrayResult::filtered($this->modules, GDO_Module::table(), $this->getHeaders());
 	}
 	
 	public function getResultCount()
