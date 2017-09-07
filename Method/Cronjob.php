@@ -18,6 +18,7 @@ class Cronjob extends MethodForm
 {
 	use MethodAdmin;
 	
+	public function isTransactional() { return false; }
 	public function getPermission() { return 'admin'; }
 	
 	public function execute()
