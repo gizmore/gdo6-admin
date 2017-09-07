@@ -52,18 +52,18 @@ class Configure extends MethodForm
 		$form->addField(GDT_Path::make('module_path')->writable(false)->initial($mod->filePath()));
 		$form->addField(GDT_Version::make('module_version')->writable(false));
 		$form->addField(GDT_Version::make('version_available')->writable(false)->value($mod->module_version));
+		$form->withGDOValuesFrom($this->configModule);
 		if ($config = $mod->getConfigCache())
 		{
 			$form->addField(GDT_Divider::make('div1')->label('form_div_config_vars'));
 			foreach ($config as $gdoType)
 			{
-				$form->addField($gdoType);
+				$form->addField($gdoType->var($mod->getConfigVar($gdoType->name)));
 			}
 		}
 		$form->addField(GDT_Submit::make()->label('btn_save'));
 		$form->addField(GDT_AntiCSRF::make());
 		# Prefill with module
-		$form->withGDOValuesFrom($this->configModule);
 	}
 
 	public function formValidated(GDT_Form $form)
