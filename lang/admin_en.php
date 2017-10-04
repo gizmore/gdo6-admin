@@ -17,6 +17,8 @@ return array(
 'btn_uninstall' => 'Wipe',
 'btn_enable' => 'Enable',
 'btn_disable' => 'Disable',
+'msg_module_enabled' => 'The %s module has been enabled.',
+'msg_module_disabled' => 'The %s module has been disabled.',
 ################################################################		
 'ft_admin_install' => '[%s] Install %s',
 'msg_module_installed' => 'The %s module has been successfully installed.',
