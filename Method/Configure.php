@@ -58,7 +58,7 @@ class Configure extends MethodForm
 			$form->addField(GDT_Divider::make('div1')->label('form_div_config_vars'));
 			foreach ($config as $gdoType)
 			{
-				$form->addField($gdoType->var($mod->getConfigVar($gdoType->name)));
+				$form->addField($gdoType->val($mod->getConfigVar($gdoType->name)));
 			}
 		}
 		$form->addField(GDT_Submit::make()->label('btn_save'));

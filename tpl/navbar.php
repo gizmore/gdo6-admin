@@ -3,7 +3,7 @@ use GDO\UI\GDT_Bar;
 use GDO\UI\GDT_Link;
 $bar = GDT_Bar::make('admintabs');
 $bar->addFields(array(
-	GDT_Link::make('btn_phpinfo')->href(href('GWF', 'PHPInfo')),
+	GDT_Link::make('btn_phpinfo')->href(href('Core', 'PHPInfo')),
 	GDT_Link::make('btn_clearcache')->href(href('Admin', 'ClearCache')),
 	GDT_Link::make('btn_modules')->href(href('Admin', 'Modules')),
 	GDT_Link::make('btn_users')->href(href('Admin', 'Users')),

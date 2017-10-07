@@ -1,14 +1,16 @@
 <?php
 namespace GDO\Admin;
+use GDO\Core\GDT_Template;
+
 trait MethodAdmin
 {
 	public function renderNavBar($module=null)
 	{
-		return Module_Admin::instance()->templatePHP('navbar.php', ['moduleName' => $module]);
+		return GDT_Template::responsePHP('Admin', 'navbar.php', ['moduleName' => $module]);
 	}
 
 	public function renderPermTabs($module=null)
 	{
-		return $this->renderNavBar($module)->add(Module_Admin::instance()->templatePHP('perm_tabs.php'));
+		return $this->renderNavBar($module)->add(GDT_Template::responsePHP('Admin', 'perm_tabs.php'));
 	}
 }

@@ -42,12 +42,12 @@ class Modules extends MethodTable
 		$response = parent::execute();
 		$navbar = $this->renderNavBar();
 		$info = $this->renderInfoBox();
-		return $navbar->add($info)->add($response);
+		return $navbar->addField($info)->add($response);
 	}
 	
 	public function renderInfoBox()
 	{
-		return GDT_Panel::make()->html(t('msg_there_are_updates'))->render();
+		return GDT_Panel::make()->html(t('msg_there_are_updates'));
 	}
 	
 	public function getResult()
