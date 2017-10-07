@@ -25,7 +25,7 @@ class Install extends MethodForm
 	
 	public function execute()
 	{
-		ModuleLoader::instance()->loadModules(false, true);
+		ModuleLoader::instance()->loadModules(true, true);
 		
 		if ($this->configModule = ModuleLoader::instance()->getModule(Common::getRequestString('module')))
 		{
