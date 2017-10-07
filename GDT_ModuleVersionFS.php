@@ -2,7 +2,7 @@
 namespace GDO\Admin;
 
 use GDO\Core\GDO_Module;
-use GDO\DB\GDO;
+use GDO\Core\GDO;
 use GDO\Type\GDT_Int;
 
 final class GDT_ModuleVersionFS extends GDT_Int
