@@ -14,8 +14,6 @@ class PermissionGrant extends MethodForm
 {
 	use MethodAdmin;
 	
-	public function getPermission() { return 'admin'; }
-	
 	public function execute()
 	{
 		return $this->renderPermTabs()->add(parent::execute());
@@ -26,7 +24,7 @@ class PermissionGrant extends MethodForm
 		$gdo = GDO_UserPermission::table();
 		$form->addFields(array(
 			$gdo->gdoColumn('perm_user_id'),
-			$gdo->gdoColumn('perm_perm_id'),
+		    $gdo->gdoColumn('perm_perm_id')->emptyInitial(t('choose_permission')),
 			GDT_Submit::make(),
 			GDT_AntiCSRF::make(),
 		));

@@ -1,6 +1,5 @@
 <?php
 namespace GDO\Admin\Method;
-
 use GDO\Admin\GDT_ModuleVersionFS;
 use GDO\Admin\MethodAdmin;
 use GDO\Core\GDO_Module;
@@ -15,11 +14,13 @@ use GDO\DB\GDT_Int;
 use GDO\DB\GDT_Name;
 use GDO\UI\GDT_Button;
 use GDO\Core\ModuleLoader;
+use GDO\Table\GDT_Sort;
+use GDO\Core\GDT_Fields;
 /**
  * Overview of modules
- * 
  * @author gizmore
- * 
+ * @since 3.00
+ * @version 6.05
  */
 class Modules extends MethodTable
 {
@@ -38,7 +39,6 @@ class Modules extends MethodTable
 	public function execute()
 	{
 		$this->modules = ModuleLoader::instance()->loadModules(false, true);
-		$this->modules = GDO_Module::table()->sort($this->modules, 'module_sort');
 		$response = parent::execute();
 		$navbar = $this->renderNavBar();
 		$info = $this->renderInfoBox();
@@ -64,8 +64,9 @@ class Modules extends MethodTable
 	{
 		return array(
 // 			GDT_DeleteButton::make(),
-			GDT_Id::make('module_id'),
-			GDT_Int::make('module_priority')->unsigned()->label('priority'),
+		    GDT_Id::make('module_id'),
+		    GDT_Sort::make('module_sort'),
+		    GDT_Int::make('module_priority')->unsigned()->label('priority'),
 			GDT_Checkbox::make('module_enabled')->label('enabled'),
 			GDT_Name::make('module_name')->label('name'),
 			GDT_Decimal::make('module_version')->label('version_db'),
