@@ -25,7 +25,7 @@ final class ModuleSort extends MethodSort
 	public function execute()
 	{
 		$response = parent::execute();
-		Cache::unset('gdo_modules');
+		Cache::remove('gdo_modules');
 		return $response;
 	}
 }

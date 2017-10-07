@@ -10,7 +10,6 @@ use GDO\Form\GDT_Submit;
 use GDO\Form\MethodForm;
 use GDO\Util\Common;
 use GDO\Install\Installer;
-use GDO\Template\Message;
 use GDO\Core\ModuleLoader;
 
 class Install extends MethodForm
@@ -53,41 +52,41 @@ class Install extends MethodForm
 		$form->addField(GDT_AntiCSRF::make());
 	}
 	
-	public function executeButton(string $button)
+	public function executeButton($button)
 	{
 		$form = $this->getForm();
 		if (!$form->validateForm())
 		{
 			return parent::formInvalid($form);
 		}
-		Cache::unset('gdo_modules');
+		Cache::remove('gdo_modules');
 		return call_user_func(array($this, "execute_$button"));
 	}
 	
 	public function execute_install()
 	{
 		Installer::installModule($this->configModule);
-		return Message::message('msg_module_installed', [$this->configModule->getName()]);
+		return $this->message('msg_module_installed', [$this->configModule->getName()]);
 	}
 	
 	public function execute_uninstall()
 	{
 		Installer::dropModule($this->configModule);
-		return Message::message('msg_module_uninstalled', [$this->configModule->getName()]);
+		return $this->message('msg_module_uninstalled', [$this->configModule->getName()]);
 	}
 	
 	public function execute_enable()
 	{
 		$this->configModule->saveVar('module_enabled', '1');
-		Cache::unset('gdo_modules');
-		return Message::message('msg_module_enabled', [$this->configModule->getName()]);
+		Cache::remove('gdo_modules');
+		return $this->message('msg_module_enabled', [$this->configModule->getName()]);
 	}
 
 	public function execute_disable()
 	{
 		$this->configModule->saveVar('module_enabled', '0');
-		Cache::unset('gdo_modules');
-		return Message::message('msg_module_disabled', [$this->configModule->getName()]);
+		Cache::remove('gdo_modules');
+		return $this->message('msg_module_disabled', [$this->configModule->getName()]);
 	}
 	
 }

@@ -3,7 +3,7 @@ namespace GDO\Admin\Method;
 
 use GDO\Admin\MethodAdmin;
 use GDO\Table\MethodQueryTable;
-use GDO\Type\GDT_String;
+use GDO\DB\GDT_String;
 use GDO\UI\GDT_IconButton;
 use GDO\User\GDT_Username;
 use GDO\User\GDO_User;

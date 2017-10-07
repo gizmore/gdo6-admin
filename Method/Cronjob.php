@@ -6,7 +6,7 @@ use GDO\Form\GDT_AntiCSRF;
 use GDO\Form\GDT_Form;
 use GDO\Form\GDT_Submit;
 use GDO\Form\MethodForm;
-use GDO\Template\Response;
+use GDO\Core\GDT_Response;
 use Exception;
 /**
  * Development aid for testing cronjobs.
@@ -37,9 +37,9 @@ class Cronjob extends MethodForm
 		try
 		{
 			ob_start();
-			echo "<pre>"; \GDO\Cronjob\Cronjob::run(); echo "</pre>\n<br/>";
+			echo "<pre>"; \GDO\Core\Cronjob::run(); echo "</pre>\n<br/>";
 			$response = ob_get_contents();
-			return $this->renderPage()->add(Response::make($response));
+			return $this->renderPage()->add(GDT_Response::make($response));
 		}
 		catch (Exception $ex)
 		{

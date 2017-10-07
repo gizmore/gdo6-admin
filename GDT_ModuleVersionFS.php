@@ -3,7 +3,7 @@ namespace GDO\Admin;
 
 use GDO\Core\GDO_Module;
 use GDO\Core\GDO;
-use GDO\Type\GDT_Int;
+use GDO\DB\GDT_Int;
 
 final class GDT_ModuleVersionFS extends GDT_Int
 {

@@ -8,11 +8,11 @@ use GDO\DB\ArrayResult;
 use GDO\DB\GDT_Id;
 use GDO\Table\GDT_Table;
 use GDO\Table\MethodTable;
-use GDO\Template\GDT_Box;
-use GDO\Type\GDT_Checkbox;
-use GDO\Type\GDT_Decimal;
-use GDO\Type\GDT_Int;
-use GDO\Type\GDT_Name;
+use GDO\UI\GDT_Panel;
+use GDO\DB\GDT_Checkbox;
+use GDO\DB\GDT_Decimal;
+use GDO\DB\GDT_Int;
+use GDO\DB\GDT_Name;
 use GDO\UI\GDT_Button;
 use GDO\Core\ModuleLoader;
 /**
@@ -47,7 +47,7 @@ class Modules extends MethodTable
 	
 	public function renderInfoBox()
 	{
-		return GDT_Box::make()->html(t('msg_there_are_updates'))->render();
+		return GDT_Panel::make()->html(t('msg_there_are_updates'))->render();
 	}
 	
 	public function getResult()

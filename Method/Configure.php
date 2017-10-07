@@ -11,8 +11,8 @@ use GDO\Form\GDT_AntiCSRF;
 use GDO\Form\GDT_Form;
 use GDO\Form\GDT_Submit;
 use GDO\Form\MethodForm;
-use GDO\Type\GDT_Name;
-use GDO\Type\GDT_Version;
+use GDO\DB\GDT_Name;
+use GDO\DB\GDT_Version;
 use GDO\UI\GDT_Divider;
 use GDO\Util\Common;
 use GDO\Core\ModuleLoader;
@@ -91,7 +91,7 @@ class Configure extends MethodForm
 		
 		if (count($info) > 0)
 		{
-			Cache::unset('gdo_modules');
+			Cache::remove('gdo_modules');
 		}
 		
 		# Announce

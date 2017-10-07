@@ -4,8 +4,8 @@ namespace GDO\Admin\Method;
 use GDO\Admin\MethodAdmin;
 use GDO\Table\GDT_Count;
 use GDO\Table\MethodQueryTable;
-use GDO\Type\GDT_Int;
-use GDO\Type\GDT_Name;
+use GDO\DB\GDT_Int;
+use GDO\DB\GDT_Name;
 use GDO\UI\GDT_Button;
 use GDO\User\GDO_Permission;
 /**

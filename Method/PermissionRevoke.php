@@ -21,12 +21,12 @@ class PermissionRevoke extends MethodForm
 	public function getPermission() { return 'admin'; }
 	
 	/**
-	 * @var User
+	 * @var GDO_User
 	 */
 	private $user;
 	
 	/**
-	 * @var Permission
+	 * @var GDO_Permission
 	 */
 	private $permission;
 	
