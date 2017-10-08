@@ -30,13 +30,20 @@ class Configure extends MethodForm
 	
 	public function execute()
 	{
+		# Load
 	    ModuleLoader::instance()->loadModules(false, true);
 	    if (!($this->configModule = ModuleLoader::instance()->getModule(Common::getRequestString('module'))))
 		{
 			return $this->error('err_module')->add($this->execMethod('Modules'));
 		}
 		
-		return $this->renderNavBar()->add($this->renderInstall()->add(parent::execute()));
+		# Response for install and configure
+		$response = $this->renderNavBar()->add($this->renderInstall());
+		if ($this->configModule->isPersisted())
+		{
+			$response->add(parent::execute()); # configure
+		}
+		return $response;
 	}
 	
 	public function renderInstall()
