@@ -11,6 +11,7 @@ use GDO\Form\MethodForm;
 use GDO\Util\Common;
 use GDO\Install\Installer;
 use GDO\Core\ModuleLoader;
+use GDO\UI\GDT_Bar;
 
 class Install extends MethodForm
 {
@@ -44,11 +45,13 @@ class Install extends MethodForm
 	public function createForm(GDT_Form $form)
 	{
 		$this->title(t('ft_admin_install', [sitename(), $this->configModule->getName()]));
-		$form->addField(GDT_Submit::make('install')->label('btn_install'));
-// 		$form->addField(GDT_Submit::make('wipe')->label('btn_module_wipe'));
-		$form->addField(GDT_Submit::make('uninstall')->label('btn_uninstall'));
-		$form->addField(GDT_Submit::make('enable')->label('btn_enable'));
-		$form->addField(GDT_Submit::make('disable')->label('btn_disable'));
+		$bar = GDT_Bar::makeWith(
+			GDT_Submit::make('install')->label('btn_install'),
+			GDT_Submit::make('uninstall')->label('btn_uninstall'),
+			GDT_Submit::make('enable')->label('btn_enable'),
+			GDT_Submit::make('disable')->label('btn_disable')
+		)->horizontal();
+		$form->addField($bar);
 		$form->addField(GDT_AntiCSRF::make());
 	}
 	
