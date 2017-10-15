@@ -44,8 +44,8 @@ class PermissionRevoke extends MethodForm
 	public function createForm(GDT_Form $form)
 	{
 		$form->addFields(array(
-			GDT_User::make('perm_user_id')->notNull()->value($this->user ? $this->user->getID() : '0'),
-			GDT_Permission::make('perm_perm_id')->notNull()->value($this->permission ? $this->permission->getID() : '0'),
+			GDT_User::make('perm_user_id')->notNull()->initial($this->user ? $this->user->getID() : '0'),
+			GDT_Permission::make('perm_perm_id')->notNull()->initial($this->permission ? $this->permission->getID() : '0'),
 			GDT_Submit::make(),
 			GDT_AntiCSRF::make(),
 		));
@@ -53,8 +53,10 @@ class PermissionRevoke extends MethodForm
 	
 	public function formValidated(GDT_Form $form)
 	{
-		$condition = sprintf('perm_user_id=%s AND perm_perm_id=%s', $form->getFormVar('perm_user_id'), $form->getFormVar('perm_perm_id'));
+		$condition = sprintf('perm_user_id=%s AND perm_perm_id=%s', $form->getFormValue('perm_user_id')->getID(), $form->getFormVar('perm_perm_id'));
 		GDO_UserPermission::table()->deleteWhere($condition)->exec();
+		$user = $form->getFormValue('perm_user_id');
+		$user->changedPermissions();
 		$affected = Database::instance()->affectedRows();
 		$response = $affected > 0 ? $this->message('msg_perm_revoked') : $this->error('err_nothing_happened');
 		return $response->add($this->renderPage());
