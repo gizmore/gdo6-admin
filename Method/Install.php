@@ -42,15 +42,26 @@ class Install extends MethodForm
 		}
 	}
 	
+	/**
+	 * The 3 button install form.
+	 * {@inheritDoc}
+	 * @see \GDO\Form\MethodForm::createForm()
+	 */
 	public function createForm(GDT_Form $form)
 	{
 		$this->title(t('ft_admin_install', [sitename(), $this->configModule->getName()]));
 		$bar = GDT_Bar::makeWith(
 			GDT_Submit::make('install')->label('btn_install'),
-			GDT_Submit::make('uninstall')->label('btn_uninstall'),
-			GDT_Submit::make('enable')->label('btn_enable'),
-			GDT_Submit::make('disable')->label('btn_disable')
+			GDT_Submit::make('uninstall')->label('btn_uninstall')
 		)->horizontal();
+		if ($this->configModule->isEnabled())
+		{
+			$bar->addField(GDT_Submit::make('disable')->label('btn_disable'));
+		}
+		else
+		{
+			$bar->addField(GDT_Submit::make('enable')->label('btn_enable'));
+		}
 		$form->addField($bar);
 		$form->addField(GDT_AntiCSRF::make());
 	}
@@ -63,6 +74,7 @@ class Install extends MethodForm
 			return parent::formInvalid($form);
 		}
 		Cache::remove('gdo_modules');
+		$this->resetForm();
 		return call_user_func(array($this, "execute_$button"));
 	}
 	
@@ -81,14 +93,12 @@ class Install extends MethodForm
 	public function execute_enable()
 	{
 		$this->configModule->saveVar('module_enabled', '1');
-		Cache::remove('gdo_modules');
 		return $this->message('msg_module_enabled', [$this->configModule->getName()]);
 	}
 
 	public function execute_disable()
 	{
 		$this->configModule->saveVar('module_enabled', '0');
-		Cache::remove('gdo_modules');
 		return $this->message('msg_module_disabled', [$this->configModule->getName()]);
 	}
 	

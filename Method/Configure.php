@@ -70,9 +70,8 @@ class Configure extends MethodForm
 		}
 		$form->addField(GDT_Submit::make()->label('btn_save'));
 		$form->addField(GDT_AntiCSRF::make());
-		# Prefill with module
 	}
-
+	
 	public function formValidated(GDT_Form $form)
 	{
 		$mod = $this->configModule;
