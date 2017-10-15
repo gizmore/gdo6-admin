@@ -1,7 +1,7 @@
 <?php
 use GDO\UI\GDT_Bar;
 use GDO\UI\GDT_Link;
-$bar = GDT_Bar::make('admintabs');
+$bar = GDT_Bar::make('admintabs')->horizontal();
 $bar->addFields(array(
 	GDT_Link::make('btn_phpinfo')->href(href('Core', 'PHPInfo')),
 	GDT_Link::make('btn_clearcache')->href(href('Admin', 'ClearCache')),

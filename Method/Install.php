@@ -50,17 +50,19 @@ class Install extends MethodForm
 	public function createForm(GDT_Form $form)
 	{
 		$this->title(t('ft_admin_install', [sitename(), $this->configModule->getName()]));
-		$bar = GDT_Bar::makeWith(
-			GDT_Submit::make('install')->label('btn_install'),
-			GDT_Submit::make('uninstall')->label('btn_uninstall')
-		)->horizontal();
-		if ($this->configModule->isEnabled())
+
+		$bar = GDT_Bar::makeWith(GDT_Submit::make('install')->label('btn_install'))->horizontal();
+		if ($this->configModule->isInstalled())
 		{
-			$bar->addField(GDT_Submit::make('disable')->label('btn_disable'));
-		}
-		else
-		{
-			$bar->addField(GDT_Submit::make('enable')->label('btn_enable'));
+			$bar->addField(GDT_Submit::make('uninstall')->label('btn_uninstall'));
+			if ($this->configModule->isEnabled())
+			{
+				$bar->addField(GDT_Submit::make('disable')->label('btn_disable'));
+			}
+			else
+			{
+				$bar->addField(GDT_Submit::make('enable')->label('btn_enable'));
+			}
 		}
 		$form->addField($bar);
 		$form->addField(GDT_AntiCSRF::make());

@@ -1,10 +1,6 @@
 <?php
-use GDO\UI\GDT_Bar;
 use GDO\UI\GDT_Link;
-
-$bar = GDT_Bar::make();
-$bar->addFields(array(
+echo \GDO\UI\GDT_Bar::makeWith(
 	GDT_Link::make('link_add_perm')->href(href('Admin', 'PermissionAdd'))->icon('add'),
-	GDT_Link::make('link_grant_perm')->href(href('Admin', 'PermissionGrant'))->icon('add'),
-));
-echo $bar->render();
+	GDT_Link::make('link_grant_perm')->href(href('Admin', 'PermissionGrant'))->icon('add')
+)->horizontal()->render();
