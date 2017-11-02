@@ -1,7 +1,7 @@
 <?php
 namespace GDO\Admin\Method;
 
-use GDO\Admin\MethodAdmin;
+use GDO\Core\MethodAdmin;
 use GDO\DB\GDT_CreatedAt;
 use GDO\DB\GDT_CreatedBy;
 use GDO\Table\GDT_Count;

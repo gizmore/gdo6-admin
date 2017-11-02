@@ -1,7 +1,7 @@
 <?php
 namespace GDO\Admin\Method;
 use GDO\Admin\GDT_ModuleVersionFS;
-use GDO\Admin\MethodAdmin;
+use GDO\Core\MethodAdmin;
 use GDO\Core\GDO_Module;
 use GDO\DB\ArrayResult;
 use GDO\DB\GDT_Id;

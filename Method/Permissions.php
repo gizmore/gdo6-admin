@@ -1,7 +1,7 @@
 <?php
 namespace GDO\Admin\Method;
 
-use GDO\Admin\MethodAdmin;
+use GDO\Core\MethodAdmin;
 use GDO\Table\GDT_Count;
 use GDO\Table\MethodQueryTable;
 use GDO\DB\GDT_Int;
