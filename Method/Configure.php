@@ -16,6 +16,7 @@ use GDO\DB\GDT_Version;
 use GDO\UI\GDT_Divider;
 use GDO\Util\Common;
 use GDO\Core\ModuleLoader;
+use GDO\UI\GDT_Link;
 
 class Configure extends MethodForm
 {
@@ -70,6 +71,11 @@ class Configure extends MethodForm
 		}
 		$form->addField(GDT_Submit::make()->label('btn_save'));
 		$form->addField(GDT_AntiCSRF::make());
+		
+		if ($adminUrl = $mod->href_administrate_module())
+		{
+			$form->addField(GDT_Link::make()->href($adminUrl)->label('href_admin'));
+		}
 	}
 	
 	public function formValidated(GDT_Form $form)
