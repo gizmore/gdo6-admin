@@ -34,7 +34,7 @@ class Configure extends MethodForm
 	    ModuleLoader::instance()->loadModules(false, true);
 	    if (!($this->configModule = ModuleLoader::instance()->getModule(Common::getRequestString('module'))))
 		{
-			return $this->error('err_module')->add($this->execMethod('Modules'));
+			return $this->error('err_module')->add(Modules::make()->execMethod());
 		}
 		
 		# Response for install and configure
@@ -48,7 +48,7 @@ class Configure extends MethodForm
 	
 	public function renderInstall()
 	{
-		return $this->execMethod('Install');
+		return Install::make()->execMethod();
 	}
 	
 	public function createForm(GDT_Form $form)

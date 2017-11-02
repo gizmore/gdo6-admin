@@ -27,7 +27,7 @@ class UserEdit extends MethodForm
 	{
 		if (!($this->user = GDO_User::getById(Common::getRequestString('id'))))
 		{
-			return $this->error('err_user')->add($this->execMethod('Users'));
+			return $this->error('err_user')->add(Users::make()->execMethod());
 		}
 		return $this->renderNavBar()->add(parent::execute());
 	}
