@@ -17,6 +17,7 @@ use GDO\Core\ModuleLoader;
 use GDO\Table\GDT_Sort;
 use GDO\Core\GDT_Fields;
 use GDO\Core\GDT_Template;
+use GDO\Admin\GDT_ModuleNameLink;
 /**
  * Overview of modules
  * @author gizmore
@@ -69,7 +70,7 @@ class Modules extends MethodTable
 		    GDT_Sort::make('module_sort'),
 		    GDT_Int::make('module_priority')->unsigned()->label('priority'),
 			GDT_Checkbox::make('module_enabled')->label('enabled'),
-			GDT_Name::make('module_name')->label('name'),
+			GDT_ModuleNameLink::make('module_name')->label('name'),
 			GDT_Decimal::make('module_version')->label('version_db'),
 			GDT_ModuleVersionFS::make('module_version_fs')->label('version_fs'),
 // 			GDT_Button::make('install_module')->label('btn_install'),
