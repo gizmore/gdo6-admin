@@ -67,7 +67,7 @@ class Modules extends MethodTable
 		return array(
 // 			GDT_DeleteButton::make(),
 		    GDT_Id::make('module_id'),
-		    GDT_Sort::make('module_sort'),
+		    GDT_Sort::make('module_sort')->label('sort'),
 		    GDT_Int::make('module_priority')->unsigned()->label('priority'),
 			GDT_Checkbox::make('module_enabled')->label('enabled'),
 			GDT_ModuleNameLink::make('module_name')->label('name'),
