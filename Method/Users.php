@@ -7,6 +7,7 @@ use GDO\DB\GDT_String;
 use GDO\UI\GDT_IconButton;
 use GDO\User\GDT_Username;
 use GDO\User\GDO_User;
+use GDO\UI\GDT_Link;
 /**
  * GDO_User table for admins
  * 
@@ -22,7 +23,8 @@ class Users extends MethodQueryTable
 	
 	public function execute()
 	{
-		return $this->renderNavBar()->add(parent::execute());
+		$createLink = GDT_Link::make()->href(href('Admin', 'UserCreate'))->label('link_create_user');
+		return $this->renderNavBar()->add(parent::execute())->addField($createLink);
 	}
 	
 	public function getGDO()
@@ -39,7 +41,6 @@ class Users extends MethodQueryTable
 	{
 		$gdo = $this->getGDO();
 		return array(
-// 			GDT_RowNum::make(),
 			GDT_IconButton::make('edit_admin')->icon('edit'),
 			$gdo->gdoColumn('user_id'),
 			$gdo->gdoColumn('user_country'),
