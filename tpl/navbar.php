@@ -1,6 +1,7 @@
 <?php
 use GDO\UI\GDT_Bar;
 use GDO\UI\GDT_Link;
+use GDO\Core\GDT_Hook;
 $bar = GDT_Bar::make('admintabs')->horizontal();
 $bar->addFields(array(
 	GDT_Link::make('btn_phpinfo')->href(href('Core', 'PHPInfo')),
@@ -11,4 +12,5 @@ $bar->addFields(array(
 	GDT_Link::make('btn_cronjob')->href(href('Admin', 'Cronjob')),
 	GDT_Link::make('btn_login_as')->href(href('Admin', 'LoginAs')),
 ));
+GDT_Hook::call('AdminBar', $bar);
 echo $bar->renderCell();
