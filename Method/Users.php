@@ -12,7 +12,7 @@ use GDO\UI\GDT_Link;
  * GDO_User table for admins
  * 
  * @author gizmore
- * @see User
+ * @see GDO_User
  * @see GWF_Table
  */
 class Users extends MethodQueryTable
@@ -50,6 +50,8 @@ class Users extends MethodQueryTable
 		    GDT_Username::make('username'),
 		    $gdo->gdoColumn('user_credits'),
 			$gdo->gdoColumn('user_email'),
+			$gdo->gdoColumn('user_register_time'),
+			$gdo->gdoColumn('user_last_activity'),
 		);
 	}
 	
