@@ -32,8 +32,8 @@ class Configure extends MethodForm
 	public function execute()
 	{
 		# Load
-	    ModuleLoader::instance()->loadModules(false, true);
-	    if (!($this->configModule = ModuleLoader::instance()->getModule(Common::getRequestString('module'))))
+		ModuleLoader::instance()->loadModules(false, true);
+		if (!($this->configModule = ModuleLoader::instance()->getModule(Common::getRequestString('module'))))
 		{
 			return $this->error('err_module')->add(Modules::make()->execMethod());
 		}
@@ -89,7 +89,7 @@ class Configure extends MethodForm
 		{
 			if ($gdoType->hasChanged() && $gdoType->writable && $gdoType->editable)
 			{
-			    GDO_ModuleVar::createModuleVar($mod, $gdoType);
+				GDO_ModuleVar::createModuleVar($mod, $gdoType);
 				$info[] = t('msg_modulevar_changed', [$gdoType->name, html($gdoType->initial), html($gdoType->getVar())]);
 				$moduleVarsChanged = true;
 			}
@@ -97,7 +97,7 @@ class Configure extends MethodForm
 		
 		if ($moduleVarsChanged)
 		{
-		    GDT_Hook::call('ModuleVarsChanged', $mod);
+			GDT_Hook::call('ModuleVarsChanged', $mod);
 		}
 		
 		

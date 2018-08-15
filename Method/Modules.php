@@ -44,7 +44,7 @@ class Modules extends MethodTable
 	
 	public function getResult()
 	{
-	    return ArrayResult::filtered($this->modules, GDO_Module::table(), $this->getHeaders());
+		return ArrayResult::filtered($this->modules, GDO_Module::table(), $this->getHeaders());
 	}
 	
 	public function getResultCount()
@@ -55,9 +55,9 @@ class Modules extends MethodTable
 	public function getHeaders()
 	{
 		return array(
-		    GDT_Id::make('module_id'),
-		    GDT_Sort::make('module_sort')->label('sort'),
-		    GDT_Int::make('module_priority')->unsigned()->label('priority'),
+			GDT_Id::make('module_id'),
+			GDT_Sort::make('module_sort')->label('sort'),
+			GDT_Int::make('module_priority')->unsigned()->label('priority'),
 			GDT_Checkbox::make('module_enabled')->label('enabled'),
 			GDT_ModuleNameLink::make('module_name')->label('name'),
 			GDT_Decimal::make('module_version')->label('version_db'),

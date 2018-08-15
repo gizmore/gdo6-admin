@@ -29,7 +29,7 @@ class ViewPermission extends MethodQueryTable
 	
 	public function init()
 	{
-	    $this->permission = GDO_Permission::table()->find(Common::getRequestString('permission'));
+		$this->permission = GDO_Permission::table()->find(Common::getRequestString('permission'));
 	}
 	
 	public function getHeaders()

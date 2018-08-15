@@ -37,7 +37,7 @@ final class LoginAs extends MethodForm
 	 */
 	private function loginForm()
 	{
-	    return Form::make();
+		return Form::make();
 	}
 	
 	public function formValidated(GDT_Form $form)

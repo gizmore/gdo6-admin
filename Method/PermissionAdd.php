@@ -21,7 +21,7 @@ class PermissionAdd extends MethodForm
 	
 	public function createForm(GDT_Form $form)
 	{
-	    $gdo = GDO_Permission::table();
+		$gdo = GDO_Permission::table();
 		$form->addFields(array(
 			$gdo->gdoColumn('perm_name'),
 			GDT_Submit::make(),
@@ -31,7 +31,7 @@ class PermissionAdd extends MethodForm
 
 	public function formValidated(GDT_Form $form)
 	{
-	    $perm = GDO_Permission::blank($form->getFormData())->insert();
+		$perm = GDO_Permission::blank($form->getFormData())->insert();
 		return $this->message('msg_perm_added', [$perm->displayName()]);
 	}
 }
