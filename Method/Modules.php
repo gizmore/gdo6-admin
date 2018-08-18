@@ -27,6 +27,8 @@ class Modules extends MethodTable
 	public function isFiltered() { return true; }
 	public function isPaginated() { return false; }
 	
+	public function getDefaultOrder() { return 'module_name'; }
+	
 	public function getPermission() { return 'staff'; }
 	
 	/**
