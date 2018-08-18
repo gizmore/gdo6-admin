@@ -98,6 +98,7 @@ class Configure extends MethodForm
 		if ($moduleVarsChanged)
 		{
 			GDT_Hook::call('ModuleVarsChanged', $mod);
+			Cache::flush();
 		}
 		
 		

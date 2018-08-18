@@ -1,6 +1,7 @@
 <?php
 namespace GDO\Admin\Method;
 
+use GDO\Core\GDO;
 use GDO\Core\MethodAdmin;
 use GDO\Core\GDT_Hook;
 use GDO\Core\Method;
