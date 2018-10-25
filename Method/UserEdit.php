@@ -9,6 +9,8 @@ use GDO\Form\MethodForm;
 use GDO\User\GDO_User;
 use GDO\Util\Common;
 use GDO\Util\BCrypt;
+use GDO\User\GDT_Username;
+use GDO\Core\Website;
 /**
  * Edit a user.
  * 
@@ -39,8 +41,11 @@ class UserEdit extends MethodForm
 		{
 			$form->addField($gdoType);
 		}
+		$form->getField('user_name')->pattern(null);
+		$form->getField('user_password')->notNull(false);
 		$form->getField('user_id')->writable(false);
 		$form->addField(GDT_Submit::make());
+		$form->addField(GDT_Submit::make('btn_delete'));
 		$form->addField(GDT_AntiCSRF::make());
 		$form->withGDOValuesFrom($this->user);
 		$form->getField('user_password')->initial('');
@@ -60,5 +65,13 @@ class UserEdit extends MethodForm
 			return $this->message('msg_user_password_is_now', [$password])->add(parent::formValidated($form));
 		}
 		return parent::formValidated($form);
+	}
+	
+	public function onSubmit_btn_delete(GDT_Form $form)
+	{
+		$this->user->delete();
+		return $this->message('msg_user_deleted', [$this->user->displayName()])->
+			add(Website::redirect(href('Admin', 'Users')));
+		
 	}
 }
