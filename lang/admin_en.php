@@ -52,4 +52,6 @@ return array(
 'msg_perm_granted' => 'You have granted %s permissions to %s.',
 ################################################################
 'msg_cache_flushed' => 'Caches have been flushed. E.g; rm -rf temp/minify, Cache::flush().',
+################################################################
+'link_create_user' => 'Create new User',
 );
