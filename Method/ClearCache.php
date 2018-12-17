@@ -18,7 +18,7 @@ final class ClearCache extends Method
 	public function execute()
 	{
 		Cache::flush();
-		GDT_Hook::call('ClearCache');
+		GDT_Hook::callWithIPC('ClearCache');
 		FileUtil::removeDir(MinifyJS::tempDirS());
 		return $this->renderNavBar()->add($this->message('msg_cache_flushed'));
 	}

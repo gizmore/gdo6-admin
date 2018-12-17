@@ -12,5 +12,5 @@ $bar->addFields(array(
 	GDT_Link::make('btn_cronjob')->href(href('Admin', 'Cronjob')),
 	GDT_Link::make('btn_login_as')->href(href('Admin', 'LoginAs')),
 ));
-GDT_Hook::call('AdminBar', $bar);
+GDT_Hook::callHook('AdminBar', $bar);
 echo $bar->renderCell();
