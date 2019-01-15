@@ -1,6 +1,7 @@
 <?php
 namespace GDO\Admin\Method;
 
+use GDO\Core\GDT_Hook;
 use GDO\Core\MethodAdmin;
 use GDO\Form\GDT_AntiCSRF;
 use GDO\Form\GDT_Form;
@@ -70,6 +71,7 @@ class UserEdit extends MethodForm
 	public function onSubmit_btn_delete(GDT_Form $form)
 	{
 		$this->user->delete();
+		GDT_Hook::callWithIPC("UserDeleted", $this->user);
 		return $this->message('msg_user_deleted', [$this->user->displayName()])->
 			add(Website::redirect(href('Admin', 'Users')));
 		
