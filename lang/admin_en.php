@@ -33,9 +33,6 @@ return array(
 'ft_admin_useredit' => '[%s] %s UserEdit',
 'msg_user_password_is_now' => 'The user`s password is now: %s',
 ################################################################
-'ft_admin_cronjob' => '[%s] Cronjob Test',
-'btn_run_cronjob' => 'Run',
-################################################################
 'link_add_perm' => 'Add Permission',
 'link_grant_perm' => 'Grant Permission',
 'ft_admin_permissionadd' => '[%s] Add Permission',

@@ -9,7 +9,6 @@ $bar->addFields(array(
 	GDT_Link::make('btn_modules')->href(href('Admin', 'Modules')),
 	GDT_Link::make('btn_users')->href(href('Admin', 'Users')),
 	GDT_Link::make('btn_permissions')->href(href('Admin', 'Permissions')),
-	GDT_Link::make('btn_cronjob')->href(href('Admin', 'Cronjob')),
 ));
 GDT_Hook::callHook('AdminBar', $bar);
 echo $bar->renderCell();
