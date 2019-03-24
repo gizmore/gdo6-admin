@@ -72,11 +72,6 @@ class Configure extends MethodForm
 		}
 		$form->addField(GDT_Submit::make()->label('btn_save'));
 		$form->addField(GDT_AntiCSRF::make());
-		
-		if ($adminUrl = $mod->href_administrate_module())
-		{
-			$form->addField(GDT_Link::make()->href($adminUrl)->label('href_admin'));
-		}
 	}
 	
 	public function formValidated(GDT_Form $form)

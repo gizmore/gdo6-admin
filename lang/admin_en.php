@@ -29,6 +29,7 @@ return array(
 'form_div_config_vars' => 'Configuration Variables',
 'msg_module_saved' => 'Config has been saved. %s',
 'msg_modulevar_changed' => '%s changed from <i>%s</i> to <i>%s</i>.',
+'href_admin' => 'Admin section',
 ################################################################
 'ft_admin_useredit' => '[%s] %s UserEdit',
 'msg_user_password_is_now' => 'The user`s password is now: %s',

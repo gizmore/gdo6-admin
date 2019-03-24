@@ -12,6 +12,7 @@ use GDO\Util\Common;
 use GDO\Install\Installer;
 use GDO\Core\ModuleLoader;
 use GDO\UI\GDT_Bar;
+use GDO\UI\GDT_Button;
 
 class Install extends MethodForm
 {
@@ -63,7 +64,13 @@ class Install extends MethodForm
 			{
 				$bar->addField(GDT_Submit::make('enable')->label('btn_enable'));
 			}
+			
+			if ($adminHREF = $this->configModule->href_administrate_module())
+			{
+				$bar->addField(GDT_Button::make('href_admin')->href($adminHREF));
+			}
 		}
+		
 		$form->addField($bar);
 		$form->addField(GDT_AntiCSRF::make());
 	}
