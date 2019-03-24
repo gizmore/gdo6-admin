@@ -30,9 +30,6 @@ return array(
 'msg_module_saved' => 'Config has been saved. %s',
 'msg_modulevar_changed' => '%s changed from <i>%s</i> to <i>%s</i>.',
 ################################################################
-'ft_admin_loginas' => '[%s] Login As',
-'err_user' => 'This user is unknown.',
-################################################################
 'ft_admin_useredit' => '[%s] %s UserEdit',
 'msg_user_password_is_now' => 'The user`s password is now: %s',
 ################################################################

@@ -14,6 +14,7 @@ use GDO\UI\GDT_Button;
 use GDO\Core\ModuleLoader;
 use GDO\Table\GDT_Sort;
 use GDO\Admin\GDT_ModuleNameLink;
+use GDO\Admin\GDT_ModuleAdminButton;
 /**
  * Overview of modules
  * @author gizmore
@@ -65,7 +66,7 @@ class Modules extends MethodTable
 			GDT_Decimal::make('module_version')->label('version_db'),
 			GDT_ModuleVersionFS::make('module_version_fs')->label('version_fs'),
 			GDT_Button::make('configure_module')->label('btn_configure'),
-			GDT_Button::make('administrate_module')->label('btn_admin'),
+			GDT_ModuleAdminButton::make('administrate_module')->label('btn_admin'),
 		);
 	}
 	
