@@ -44,6 +44,7 @@ return array(
 'ft_admin_permissionrevoke' => '[%s] Revoke Permission',
 ################################################################
 'ft_admin_permissiongrant' => '[%s] Grant Permission',
+'choose_permission' => 'Choose permission',
 'msg_perm_granted' => 'You have granted %s permissions to %s.',
 ################################################################
 'msg_cache_flushed' => 'Caches have been flushed. E.g; rm -rf temp/minify, Cache::flush().',

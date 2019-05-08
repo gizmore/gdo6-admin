@@ -31,7 +31,7 @@ class Install extends MethodForm
 		
 		if ($this->configModule = ModuleLoader::instance()->getModule(Common::getRequestString('module')))
 		{
-			$buttons = ['install', 'uninstall', 'enable', 'disable'];
+			$buttons = ['install', 'reinstall', 'uninstall', 'enable', 'disable'];
 			foreach ($buttons as $button)
 			{
 				if (isset($_POST[$button]))
@@ -56,6 +56,7 @@ class Install extends MethodForm
 		if ($this->configModule->isInstalled())
 		{
 			$bar->addField(GDT_Submit::make('uninstall')->label('btn_uninstall'));
+			$bar->addField(GDT_Submit::make('reinstall')->label('btn_reinstall'));
 			if ($this->configModule->isEnabled())
 			{
 				$bar->addField(GDT_Submit::make('disable')->label('btn_disable'));
@@ -90,6 +91,12 @@ class Install extends MethodForm
 	public function execute_install()
 	{
 		Installer::installModule($this->configModule);
+		return $this->message('msg_module_installed', [$this->configModule->getName()]);
+	}
+	
+	public function execute_reinstall()
+	{
+		Installer::installModule($this->configModule, true);
 		return $this->message('msg_module_installed', [$this->configModule->getName()]);
 	}
 	
