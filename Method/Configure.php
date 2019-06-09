@@ -97,7 +97,6 @@ class Configure extends MethodForm
 			Cache::flush();
 		}
 		
-		
 		if (count($info) > 0)
 		{
 			Cache::remove('gdo_modules');
