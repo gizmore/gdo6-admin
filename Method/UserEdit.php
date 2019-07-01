@@ -12,6 +12,9 @@ use GDO\Util\Common;
 use GDO\Util\BCrypt;
 use GDO\User\GDT_Username;
 use GDO\Core\Website;
+use GDO\UI\GDT_Bar;
+use GDO\UI\GDT_Link;
+use GDO\Core\GDT_Response;
 /**
  * Edit a user.
  * 
@@ -32,7 +35,11 @@ class UserEdit extends MethodForm
 		{
 			return $this->error('err_user')->add(Users::make()->execMethod());
 		}
-		return $this->renderNavBar()->add(parent::execute());
+		
+		$barPermissions = GDT_Bar::make()->horizontal();
+		$barPermissions->addField(GDT_Link::make('link_edit_permissions')->href(href('Admin', 'PermissionGrant', '&form[perm_user_id]='.$this->user->getID())));
+		
+		return $this->renderNavBar()->add(GDT_Response::makeWith($barPermissions))->add(parent::execute());
 	}
 	
 	public function createForm(GDT_Form $form)
