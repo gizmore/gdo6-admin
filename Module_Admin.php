@@ -11,7 +11,6 @@ class Module_Admin extends GDO_Module
 	##############
 	### Module ###
 	##############
-	public function isCoreModule() { return true; }
 	public function onLoadLanguage() { return $this->loadLanguage('lang/admin'); }
 
 	###############
