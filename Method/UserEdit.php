@@ -44,7 +44,7 @@ class UserEdit extends MethodForm
 	
 	public function createForm(GDT_Form $form)
 	{
-		$this->title(t('ft_admin_useredit', [sitename(), $this->user->displayNameLabel()]));
+		$this->title(t('ft_admin_useredit', [$this->user->displayNameLabel()]));
 		foreach ($this->user->gdoColumnsCache() as $gdoType)
 		{
 			$form->addField($gdoType);
