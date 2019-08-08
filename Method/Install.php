@@ -13,6 +13,7 @@ use GDO\Install\Installer;
 use GDO\Core\ModuleLoader;
 use GDO\UI\GDT_Bar;
 use GDO\UI\GDT_Button;
+use GDO\Util\Strings;
 
 class Install extends MethodForm
 {
@@ -55,7 +56,10 @@ class Install extends MethodForm
 		$bar = GDT_Bar::makeWith(GDT_Submit::make('install')->label('btn_install'))->horizontal();
 		if ($this->configModule->isInstalled())
 		{
-			$bar->addField(GDT_Submit::make('uninstall')->label('btn_uninstall'));
+			$tables = $this->configModule->getClasses();
+			$modules = implode(', ', array_map(function($t){return Strings::rsubstrFrom($t, '\\');}, $tables));
+			$text = t('confirm_wipe_module', [$modules]);
+			$bar->addField(GDT_Submit::make('uninstall')->label('btn_uninstall')->attr('onclick', 'return confirm(\''.$text.'\')"'));
 			$bar->addField(GDT_Submit::make('reinstall')->label('btn_reinstall'));
 			if ($this->configModule->isEnabled())
 			{

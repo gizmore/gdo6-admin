@@ -32,6 +32,7 @@ return array(
 'msg_module_saved' => 'Config has been saved. %s',
 'msg_modulevar_changed' => '%s changed from <i>%s</i> to <i>%s</i>.',
 'href_admin' => 'Admin section',
+'confirm_wipe_module' => 'Do you want to drop these tables: %s?',
 ################################################################
 'ft_admin_useredit' => '%s UserEdit',
 'msg_user_password_is_now' => 'The user`s password is now: %s',
