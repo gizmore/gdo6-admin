@@ -26,7 +26,7 @@ class Permissions extends MethodQueryTable
 	{
 		return array(
 			GDT_Count::make(),
-			GDT_Button::make('edit'),
+			GDT_Button::make('btn_edit'),
 			GDT_Name::make('perm_name'),
 			GDT_Int::make('user_count')->virtual(),
 		);
