@@ -57,7 +57,7 @@ class Install extends MethodForm
 		if ($this->configModule->isInstalled())
 		{
 			$tables = $this->configModule->getClasses();
-			$modules = implode(', ', array_map(function($t){return Strings::rsubstrFrom($t, '\\');}, $tables));
+			$modules = empty($tables) ? t('enum_none') : implode(', ', array_map(function($t){return Strings::rsubstrFrom($t, '\\');}, $tables));
 			$text = t('confirm_wipe_module', [$modules]);
 			$bar->addField(GDT_Submit::make('uninstall')->label('btn_uninstall')->attr('onclick', 'return confirm(\''.$text.'\')"'));
 			$bar->addField(GDT_Submit::make('reinstall')->label('btn_reinstall'));

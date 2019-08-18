@@ -15,7 +15,7 @@ final class UserCreate extends MethodForm
 	{
 		$users = GDO_User::table();
 		$form->addFields(array(
-			$users->gdoColumn('user_name'),
+			$users->gdoColumnCopy('user_name')->notNull(),
 			GDT_Submit::make(),
 			GDT_AntiCSRF::make(),
 		));

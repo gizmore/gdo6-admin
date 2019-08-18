@@ -10,11 +10,11 @@ use GDO\Form\MethodForm;
 use GDO\User\GDO_User;
 use GDO\Util\Common;
 use GDO\Util\BCrypt;
-use GDO\User\GDT_Username;
 use GDO\Core\Website;
 use GDO\UI\GDT_Bar;
 use GDO\UI\GDT_Link;
 use GDO\Core\GDT_Response;
+use GDO\Form\GDT_DeleteButton;
 /**
  * Edit a user.
  * 
@@ -27,6 +27,9 @@ class UserEdit extends MethodForm
 	
 	public function getPermission() { return 'admin'; }
 	
+	/**
+	 * @var GDO_User
+	 */
 	private $user;
 	
 	public function execute()
@@ -44,19 +47,28 @@ class UserEdit extends MethodForm
 	
 	public function createForm(GDT_Form $form)
 	{
+		# Set title
 		$this->title(t('ft_admin_useredit', [$this->user->displayNameLabel()]));
-		foreach ($this->user->gdoColumnsCache() as $gdoType)
+		
+		# Add all columns
+		foreach ($this->user->gdoColumns() as $gdoType)
 		{
 			$form->addField($gdoType);
 		}
+		
+		# Add buttons
+		$form->addField(GDT_Submit::make());
+		$form->addField(GDT_DeleteButton::make());
+		$form->addField(GDT_AntiCSRF::make());
+		
+		# Fill form values with user data
+		$form->withGDOValuesFrom($this->user);
+
+		# Patch columns a bit
 		$form->getField('user_name')->pattern(null);
 		$form->getField('user_password')->notNull(false);
 		$form->getField('user_id')->writable(false);
-		$form->addField(GDT_Submit::make());
-		$form->addField(GDT_Submit::make('btn_delete'));
-		$form->addField(GDT_AntiCSRF::make());
-		$form->withGDOValuesFrom($this->user);
-		$form->getField('user_password')->initial('');
+		$form->getField('user_password')->initial(''); # no pass initially
 	}
 	
 	public function formValidated(GDT_Form $form)

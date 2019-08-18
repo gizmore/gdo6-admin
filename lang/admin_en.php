@@ -34,11 +34,12 @@ return array(
 'href_admin' => 'Admin section',
 'confirm_wipe_module' => 'Do you want to drop these tables: %s?',
 ################################################################
-'ft_admin_useredit' => '%s UserEdit',
+'ft_admin_useredit' => 'Edit user ´%s´',
 'msg_user_password_is_now' => 'The user`s password is now: %s',
 ################################################################
 'link_add_perm' => 'Add Permission',
 'link_grant_perm' => 'Grant Permission',
+'link_edit_permissions' => 'Edit Permissions',
 'ft_admin_permissionadd' => 'Add Permission',
 'user_count' => 'Members',
 'perm_revoke' => 'Revoke',
@@ -52,6 +53,7 @@ return array(
 ################################################################
 'msg_cache_flushed' => 'Caches have been flushed. E.g; rm -rf temp/minify, Cache::flush().',
 ################################################################
-'link_create_user' => 'Create new User',
+'link_create_user' => 'Create new user',
+'ft_admin_usercreate' => 'Create a new user',
 ################################################################
 );
