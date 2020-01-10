@@ -7,6 +7,7 @@ use GDO\User\GDO_User;
 use GDO\Form\GDT_Submit;
 use GDO\Form\GDT_AntiCSRF;
 use GDO\UI\GDT_Link;
+use GDO\Core\GDT_Hook;
 use GDO\Core\GDT_Success;
 
 final class UserCreate extends MethodForm
@@ -28,6 +29,7 @@ final class UserCreate extends MethodForm
 			'user_name' => $form->getFormVar('user_name'),
 		));
 		$user->insert();
+		GDT_Hook::callWithIPC('UserActivated', $user);
 		$linkEdit = GDT_Link::make()->href(href('Admin', 'UserEdit', '&id='.$user->getID()));
 		return GDT_Success::responseWith('admin_user_created')->addField($linkEdit);
 	}
