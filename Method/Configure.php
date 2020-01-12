@@ -67,7 +67,10 @@ class Configure extends MethodForm
 			$form->addField(GDT_Divider::make('div1')->label('form_div_config_vars'));
 			foreach ($config as $gdoType)
 			{
-				$gdoType->label('cfg_' . $gdoType->name);
+				if (Trans::hasKey('cfg_' . $gdoType->name) || (!$gdoType->hasName()))
+				{
+					$gdoType->label('cfg_' . $gdoType->name);
+				}
 				$key = 'cfg_tt_' . $gdoType->name;
 				if (Trans::hasKey($key))
 				{
@@ -92,7 +95,7 @@ class Configure extends MethodForm
 			if ($gdoType->hasChanged() && $gdoType->writable && $gdoType->editable)
 			{
 				GDO_ModuleVar::createModuleVar($mod, $gdoType);
-				$info[] = t('msg_modulevar_changed', [t('cfg_'.$gdoType->name), html($gdoType->initial), html($gdoType->getVar())]);
+				$info[] = t('msg_modulevar_changed', [$gdoType->displayLabel(), html($gdoType->initial), html($gdoType->getVar())]);
 				$moduleVarsChanged = true;
 			}
 		}
