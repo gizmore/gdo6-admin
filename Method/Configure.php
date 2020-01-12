@@ -16,7 +16,6 @@ use GDO\DB\GDT_Version;
 use GDO\UI\GDT_Divider;
 use GDO\Util\Common;
 use GDO\Core\ModuleLoader;
-use GDO\UI\GDT_Link;
 use GDO\Language\Trans;
 
 class Configure extends MethodForm
@@ -67,7 +66,7 @@ class Configure extends MethodForm
 			$form->addField(GDT_Divider::make('div1')->label('form_div_config_vars'));
 			foreach ($config as $gdoType)
 			{
-				if (Trans::hasKey('cfg_' . $gdoType->name) || (!$gdoType->hasName()))
+// 				if (Trans::hasKey('cfg_' . $gdoType->name) || (!$gdoType->hasName()))
 				{
 					$gdoType->label('cfg_' . $gdoType->name);
 				}
