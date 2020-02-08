@@ -58,14 +58,13 @@ class Modules extends MethodTable
 	public function getHeaders()
 	{
 		return array(
-			GDT_Id::make('module_id'),
 			GDT_Sort::make('module_sort')->label('sort'),
-			GDT_Int::make('module_priority')->unsigned()->label('priority'),
+// 			GDT_Int::make('module_priority')->unsigned()->label('priority'),
 			GDT_Checkbox::make('module_enabled')->label('enabled'),
-			GDT_ModuleNameLink::make('module_name')->label('name'),
 			GDT_Decimal::make('module_version')->label('version_db'),
 			GDT_ModuleVersionFS::make('module_version_fs')->label('version_fs'),
-			GDT_Button::make('configure_module')->label('btn_configure'),
+			GDT_ModuleNameLink::make('module_name')->label('name'),
+// 			GDT_Button::make('configure_module')->label('btn_configure'),
 			GDT_ModuleAdminButton::make('administrate_module')->label('btn_admin'),
 		);
 	}
