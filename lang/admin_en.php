@@ -56,4 +56,5 @@ return array(
 'link_create_user' => 'Create new user',
 'ft_admin_usercreate' => 'Create a new user',
 ################################################################
+'mdescr_admin_modules' => 'Administrate modules',
 );
