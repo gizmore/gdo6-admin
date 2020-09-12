@@ -11,7 +11,6 @@ use GDO\Form\MethodForm;
 use GDO\Util\Common;
 use GDO\Install\Installer;
 use GDO\Core\ModuleLoader;
-use GDO\UI\GDT_Bar;
 use GDO\UI\GDT_Button;
 use GDO\Util\Strings;
 use GDO\UI\GDT_ButtonBar;

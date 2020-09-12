@@ -34,8 +34,6 @@ class ViewPermission extends MethodQueryTable
 	
 	public function getHeaders()
 	{
-		$users = GDO_User::table();
-		$perms = GDO_UserPermission::table();
 		return array(
 			GDT_Count::make('count'),
 			GDT_User::make('perm_user_id'),
