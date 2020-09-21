@@ -24,6 +24,7 @@ class PermissionAdd extends MethodForm
 		$gdo = GDO_Permission::table();
 		$form->addFields(array(
 			$gdo->gdoColumn('perm_name'),
+		    $gdo->gdoColumn('perm_level'),
 			GDT_Submit::make(),
 			GDT_AntiCSRF::make(),
 		));
