@@ -64,9 +64,9 @@ class Configure extends MethodForm
 		$mod = $this->configModule;
 		$this->title(t('ft_admin_configure', [$this->configModule->getName()]));
 		$form->addField(GDT_Name::make('module_name')->writable(false));
-		$form->addField(GDT_Path::make('module_path')->writable(false)->initial($mod->filePath()));
+		$form->addField(GDT_Path::make('module_path')->writable(false)->val($mod->filePath()));
 		$form->addField(GDT_Version::make('module_version')->writable(false));
-		$form->addField(GDT_Version::make('version_available')->writable(false)->value($mod->module_version));
+		$form->addField(GDT_Version::make('version_available')->writable(false)->val($mod->module_version));
 		$form->withGDOValuesFrom($this->configModule);
 		if ($config = $mod->getConfigCache())
 		{
