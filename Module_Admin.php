@@ -24,4 +24,9 @@ class Module_Admin extends GDO_Module
 		}
 	}
 	
+	public function renderAdminTabs()
+	{
+	    
+	}
+	
 }

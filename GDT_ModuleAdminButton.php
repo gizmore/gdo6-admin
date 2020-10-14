@@ -15,10 +15,12 @@ class GDT_ModuleAdminButton extends GDT_Button
 	
 	public function renderCell()
 	{
-		if ($this->module()->href_administrate_module())
+		if ($href = $this->module()->href_administrate_module())
 		{
+		    $this->href($href);
 			return parent::renderCell();
 		}
 		return '';
 	}
+	
 }
