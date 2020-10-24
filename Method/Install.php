@@ -52,6 +52,8 @@ class Install extends MethodForm
 	public function createForm(GDT_Form $form)
 	{
 		$this->title(t('ft_admin_install', [$this->configModule->getName()]));
+		
+		$form->name = 'install-form';
 
 		$bar = GDT_ButtonBar::makeWith(GDT_Submit::make('install')->label('btn_install'))->horizontal();
 		if ($this->configModule->isInstalled())

@@ -30,7 +30,7 @@ final class UserCreate extends MethodForm
 		));
 		$user->insert();
 		GDT_Hook::callWithIPC('UserActivated', $user);
-		$linkEdit = GDT_Link::make()->href(href('Admin', 'UserEdit', '&id='.$user->getID()));
+		$linkEdit = GDT_Link::make('link_user_edit')->href(href('Admin', 'UserEdit', '&id='.$user->getID()));
 		return GDT_Success::responseWith('admin_user_created')->addField($linkEdit);
 	}
 	

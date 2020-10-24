@@ -57,4 +57,7 @@ return array(
 'ft_admin_usercreate' => 'Create a new user',
 ################################################################
 'mdescr_admin_modules' => 'Administrate modules',
+'admin_user_created' => 'The user has been created successfully.',
+'link_user_edit' => 'Edit user',
+'mdescr_admin_configure' => 'Configure a module',
 );

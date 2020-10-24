@@ -64,9 +64,9 @@ class Configure extends MethodForm
 		$mod = $this->configModule;
 		$this->title(t('ft_admin_configure', [$this->configModule->getName()]));
 		$form->addField(GDT_Name::make('module_name')->writable(false));
-		$form->addField(GDT_Path::make('module_path')->writable(false)->val($mod->filePath()));
+		$form->addField(GDT_Path::make('module_path')->writable(false)->var($mod->filePath()));
 		$form->addField(GDT_Version::make('module_version')->writable(false));
-		$form->addField(GDT_Version::make('version_available')->writable(false)->val($mod->module_version));
+		$form->addField(GDT_Version::make('version_available')->writable(false)->var($mod->module_version));
 		$form->withGDOValuesFrom($this->configModule);
 		if ($config = $mod->getConfigCache())
 		{
@@ -82,7 +82,7 @@ class Configure extends MethodForm
 				{
 					$gdoType->tooltip($key);
 				}
-				$form->addField($gdoType->val($mod->getConfigVar($gdoType->name)));
+				$form->addField($gdoType->var($mod->getConfigVar($gdoType->name)));
 			}
 		}
 		$form->addField(GDT_Submit::make()->label('btn_save'));
