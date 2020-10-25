@@ -35,7 +35,7 @@ class Install extends MethodForm
 			$buttons = ['install', 'reinstall', 'uninstall', 'enable', 'disable'];
 			foreach ($buttons as $button)
 			{
-				if (isset($_POST[$button]))
+				if (isset($_REQUEST[$button]))
 				{
 					return $this->executeButton($button)->add($this->renderPage());
 				}
