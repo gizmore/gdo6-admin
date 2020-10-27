@@ -42,7 +42,7 @@ class Users extends MethodQueryTable
 		return array(
 			GDT_IconButton::make('edit_admin')->icon('edit'),
 			$gdo->gdoColumn('user_id'),
-			$gdo->gdoColumn('user_country'),
+			$gdo->gdoColumn('user_country')->withName(false),
 			GDT_String::make('user_name'),
 			$gdo->gdoColumn('user_type'),
 // 			$gdo->gdoColumn('user_level'),

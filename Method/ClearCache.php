@@ -8,6 +8,7 @@ use GDO\DB\Cache;
 use GDO\File\FileUtil;
 use GDO\Util\MinifyJS;
 use GDO\Core\Module_Core;
+use GDO\Core\Website;
 
 /**
  * Clears all client and server caches.
@@ -35,7 +36,7 @@ final class ClearCache extends Method
 		$assetVersion = $core->cfgAssetVersion() + 0.01;
 		$core->saveConfigVar('asset_revision', $assetVersion);
 		# Done
-		return $this->renderNavBar()->add($this->message('msg_cache_flushed'));
+		return $this->renderNavBar()->add($this->message('msg_cache_flushed'))->add(Website::redirectBack(12));
 	}
 
 }
