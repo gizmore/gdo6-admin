@@ -25,7 +25,7 @@ final class ClearCache extends Method
 	
 	public function execute()
 	{
-		# Flush memcached and gdo cache.
+		# Flush memcached.
 		Cache::flush();
 		# Call hook
 		GDT_Hook::callWithIPC('ClearCache');

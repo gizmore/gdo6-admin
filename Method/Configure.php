@@ -108,13 +108,8 @@ class Configure extends MethodForm
 		
 		if ($moduleVarsChanged)
 		{
-			GDT_Hook::callWithIPC('ModuleVarsChanged', $mod);
 			Cache::flush();
-		}
-		
-		if (count($info) > 0)
-		{
-			Cache::remove('gdo_modules');
+			GDT_Hook::callWithIPC('ModuleVarsChanged', $mod);
 		}
 		
 		# Announce
