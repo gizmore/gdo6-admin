@@ -34,7 +34,7 @@ final class ClearCache extends Method
 		# Retrigger assets
 		$core = Module_Core::instance();
 		$assetVersion = $core->cfgAssetVersion() + 0.01;
-		$core->saveConfigVar('asset_revision', $assetVersion);
+		$core->saveConfigVar('asset_revision', round($assetVersion, 2));
 		# Done
 		return $this->renderNavBar()->add($this->message('msg_cache_flushed'))->add(Website::redirectBack(12));
 	}
