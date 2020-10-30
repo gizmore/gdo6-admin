@@ -21,6 +21,8 @@ class Install extends MethodForm
 	
 	public function getPermission() { return 'admin'; }
 	
+	public function formName() { return 'form_install'; }
+	
 	/**
 	 * @var GDO_Module
 	 */
@@ -35,7 +37,7 @@ class Install extends MethodForm
 			$buttons = ['install', 'reinstall', 'uninstall', 'enable', 'disable'];
 			foreach ($buttons as $button)
 			{
-				if (isset($_REQUEST[$button]))
+				if (isset($_REQUEST[$this->formName()][$button]))
 				{
 					return $this->executeButton($button)->add($this->renderPage());
 				}
@@ -53,8 +55,6 @@ class Install extends MethodForm
 	{
 		$this->title(t('ft_admin_install', [$this->configModule->getName()]));
 		
-		$form->name = 'install-form';
-
 		$bar = GDT_ButtonBar::makeWith(GDT_Submit::make('install')->label('btn_install'))->horizontal();
 		if ($this->configModule->isInstalled())
 		{
