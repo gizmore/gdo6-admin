@@ -51,7 +51,7 @@ class UserEdit extends MethodForm
 		$this->title(t('ft_admin_useredit', [$this->user->displayNameLabel()]));
 		
 		# Add all columns
-		foreach ($this->user->gdoColumns() as $gdoType)
+		foreach ($this->user->gdoColumnsCache() as $gdoType)
 		{
 			$form->addField($gdoType);
 		}
