@@ -68,7 +68,7 @@ class Configure extends MethodForm
 	public function createForm(GDT_Form $form)
 	{
 		$mod = $this->configModule;
-		$this->title(t('ft_admin_configure', [$this->configModule->getName()]));
+		$this->title(t('ft_admin_configure', [$mod->getName()]));
 		$form->addField(GDT_Name::make('module_name')->writable(false));
 		$form->addField(GDT_Path::make('module_path')->writable(false)->initial($mod->filePath()));
 		$form->addField(GDT_Version::make('module_version')->writable(false));
@@ -79,16 +79,13 @@ class Configure extends MethodForm
 			$form->addField(GDT_Divider::make('div1')->label('form_div_config_vars'));
 			foreach ($config as $gdoType)
 			{
-// 				if (Trans::hasKey('cfg_' . $gdoType->name) || (!$gdoType->hasName()))
-				{
-					$gdoType->label('cfg_' . $gdoType->name);
-				}
+				$gdoType->label('cfg_' . $gdoType->name);
 				$key = 'cfg_tt_' . $gdoType->name;
 				if (Trans::hasKey($key))
 				{
 					$gdoType->tooltip($key);
 				}
-				$form->addField($gdoType->var($mod->getConfigVar($gdoType->name)));
+				$form->addField($gdoType); #->var($mod->getConfigVar($gdoType->name)));
 			}
 		}
 		$form->addField(GDT_Submit::make()->label('btn_save'));
