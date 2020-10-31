@@ -23,6 +23,8 @@ class Install extends MethodForm
 	
 	public function formName() { return 'form_install'; }
 	
+	public function beforeExecute() {}
+	
 	/**
 	 * @var GDO_Module
 	 */

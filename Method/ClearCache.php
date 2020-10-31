@@ -27,16 +27,16 @@ final class ClearCache extends Method
 	{
 		# Flush memcached.
 		Cache::flush();
-		# Call hook
-		GDT_Hook::callWithIPC('ClearCache');
 		# Remove minified JS
 		FileUtil::removeDir(MinifyJS::tempDirS());
+		# Call hook
+		GDT_Hook::callWithIPC('ClearCache');
 		# Retrigger assets
 		$core = Module_Core::instance();
 		$assetVersion = $core->cfgAssetVersion() + 0.01;
-		$core->saveConfigVar('asset_revision', round($assetVersion, 2));
+		$core->saveConfigVar('asset_revision', sprintf('%.02f', round($assetVersion, 2)));
 		# Done
-		return $this->renderNavBar()->add($this->message('msg_cache_flushed'))->add(Website::redirectBack(12));
+		return $this->message('msg_cache_flushed')->add(Website::redirectBack(12));
 	}
 
 }

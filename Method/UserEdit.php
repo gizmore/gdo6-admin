@@ -13,8 +13,9 @@ use GDO\Util\BCrypt;
 use GDO\Core\Website;
 use GDO\UI\GDT_Bar;
 use GDO\UI\GDT_Link;
-use GDO\Core\GDT_Response;
 use GDO\Form\GDT_DeleteButton;
+use GDO\UI\GDT_Page;
+
 /**
  * Edit a user.
  * 
@@ -24,8 +25,6 @@ use GDO\Form\GDT_DeleteButton;
 class UserEdit extends MethodForm
 {
 	use MethodAdmin;
-	
-	public function getPermission() { return 'admin'; }
 	
 	/**
 	 * @var GDO_User
@@ -42,7 +41,9 @@ class UserEdit extends MethodForm
 		$barPermissions = GDT_Bar::make()->horizontal();
 		$barPermissions->addField(GDT_Link::make('link_edit_permissions')->href(href('Admin', 'PermissionGrant', '&form[perm_user_id]='.$this->user->getID())));
 		
-		return $this->renderNavBar()->add(GDT_Response::makeWith($barPermissions))->add(parent::execute());
+		GDT_Page::$INSTANCE->topTabs->addField($barPermissions);
+		
+		return parent::execute();
 	}
 	
 	public function createForm(GDT_Form $form)

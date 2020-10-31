@@ -16,7 +16,8 @@ class PermissionGrant extends MethodForm
 	
 	public function execute()
 	{
-		return $this->renderPermTabs()->add(parent::execute());
+	    $this->renderPermTabs();
+		return parent::execute();
 	}
 	
 	public function createForm(GDT_Form $form)

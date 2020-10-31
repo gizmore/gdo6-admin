@@ -37,9 +37,7 @@ class Modules extends MethodTable
 	public function execute()
 	{
 		$this->modules = ModuleLoader::instance()->loadModules(true, true);
-		$response = parent::execute();
-		$navbar = $this->renderNavBar();
-		return $navbar->add($response);
+		return parent::execute();
 	}
 	
 	public function getResult()

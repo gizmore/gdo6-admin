@@ -23,7 +23,7 @@ class Users extends MethodQueryTable
 	public function execute()
 	{
 		$createLink = GDT_IconButton::make()->icon('create')->href(href('Admin', 'UserCreate'))->label('link_create_user');
-		return $this->renderNavBar()->add(parent::execute())->addField($createLink);
+		return parent::execute()->addField($createLink);
 	}
 	
 	public function getGDO()

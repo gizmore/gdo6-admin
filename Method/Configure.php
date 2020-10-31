@@ -19,6 +19,7 @@ use GDO\Core\ModuleLoader;
 use GDO\Language\Trans;
 use GDO\UI\GDT_Paragraph;
 use GDO\UI\GDT_Panel;
+use GDO\Core\GDT_Response;
 
 class Configure extends MethodForm
 {
@@ -40,17 +41,22 @@ class Configure extends MethodForm
 			return $this->error('err_module')->add(Modules::make()->execMethod());
 		}
 		
+		$response = GDT_Response::make();
+		
 		# Response for install and configure
-		$response = $this->renderNavBar();
 		if ($descr = $this->configModule->getModuleDescription())
 		{
-			$response->addField(GDT_Panel::makeWith(GDT_Paragraph::withHTML($descr)));
+			$panelDescr = GDT_Panel::makeWith(GDT_Paragraph::withHTML($descr));
+			$response->addField($panelDescr);
 		}
+		
 		$response->add($this->renderInstall());
+		
 		if ($this->configModule->isPersisted())
 		{
 			$response->add(parent::execute()); # configure
 		}
+		
 		return $response;
 	}
 	

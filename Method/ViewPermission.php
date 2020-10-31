@@ -24,7 +24,8 @@ class ViewPermission extends MethodQueryTable
 	
 	public function execute()
 	{
-		return $this->renderPermTabs('Admin')->add(parent::execute());
+	    $this->renderPermTabs('Admin');
+		return parent::execute();
 	}
 	
 	public function init()

@@ -48,7 +48,8 @@ class Permissions extends MethodQueryTable
 	
 	public function execute()
 	{
-		return $this->renderPermTabs()->add(parent::execute());
+	    $this->renderPermTabs();
+		return parent::execute();
 	}
 	
 }
