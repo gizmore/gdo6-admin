@@ -8,14 +8,14 @@ class GDT_ModuleAdminButton extends GDT_Button
 	/**
 	 * @return \GDO\Core\GDO_Module
 	 */
-	private function module()
+	private function getModule()
 	{
 		return $this->gdo;
 	}
 	
 	public function renderCell()
 	{
-		if ($href = $this->module()->href_administrate_module())
+	    if ($href = $this->getModule()->href_administrate_module())
 		{
 		    $this->href($href);
 			return parent::renderCell();

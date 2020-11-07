@@ -67,9 +67,8 @@ class UserEdit extends MethodForm
 
 		# Patch columns a bit
 		$form->getField('user_name')->pattern(null);
-		$form->getField('user_password')->notNull(false);
+		$form->getField('user_password')->notNull(false)->initial('');
 		$form->getField('user_id')->writable(false);
-		$form->getField('user_password')->initial(''); # no pass initially
 	}
 	
 	public function formValidated(GDT_Form $form)
