@@ -37,9 +37,10 @@ class Install extends MethodForm
 		if ($this->configModule = ModuleLoader::instance()->getModule(Common::getRequestString('module')))
 		{
 			$buttons = ['install', 'reinstall', 'uninstall', 'enable', 'disable'];
+			$form = $this->formName();
 			foreach ($buttons as $button)
 			{
-				if (isset($_REQUEST[$this->formName()][$button]))
+				if (isset($_REQUEST[$form][$button]))
 				{
 					return $this->executeButton($button)->add($this->renderPage());
 				}
@@ -91,14 +92,16 @@ class Install extends MethodForm
 		{
 			return parent::formInvalid($form);
 		}
+		$response = call_user_func(array($this, "execute_$button"));
 		Cache::remove('gdo_modules');
-		$this->resetForm();
-		return call_user_func(array($this, "execute_$button"));
+// 		$this->resetForm();
+		return $response;
 	}
 	
 	public function execute_install()
 	{
 		Installer::installModule($this->configModule);
+		$this->configModule->saveVar('module_enabled', '1');
 		return $this->message('msg_module_installed', [$this->configModule->getName()]);
 	}
 	
