@@ -38,7 +38,7 @@ final class ClearCache extends Method
 		$assetVersion = $core->cfgAssetVersion() + 0.01;
 		$core->saveConfigVar('asset_revision', sprintf('%.02f', round($assetVersion, 2)));
 		# Done
-		return $this->message('msg_cache_flushed')->add(Website::redirectBack(12));
+		Website::redirectMessage('msg_cache_flushed', null, Website::hrefBack());
 	}
 
 }

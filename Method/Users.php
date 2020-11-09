@@ -46,7 +46,7 @@ class Users extends MethodQueryTable
 			GDT_String::make('user_name'),
 			$gdo->gdoColumn('user_type'),
 // 			$gdo->gdoColumn('user_level'),
-			GDT_Username::make('username'),
+			GDT_Username::make('username')->orderable(false),
 			$gdo->gdoColumn('user_credits'),
 			$gdo->gdoColumn('user_email'),
 			$gdo->gdoColumn('user_register_time'),
