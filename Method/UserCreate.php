@@ -6,9 +6,9 @@ use GDO\Form\GDT_Form;
 use GDO\User\GDO_User;
 use GDO\Form\GDT_Submit;
 use GDO\Form\GDT_AntiCSRF;
-use GDO\UI\GDT_Link;
 use GDO\Core\GDT_Hook;
 use GDO\Core\MethodAdmin;
+use GDO\UI\GDT_Button;
 
 final class UserCreate extends MethodForm
 {
@@ -18,7 +18,7 @@ final class UserCreate extends MethodForm
 	{
 		$users = GDO_User::table();
 		$form->addFields(array(
-			$users->gdoColumnCopy('user_name')->notNull(),
+			$users->gdoColumn('user_name')->notNull(),
 			GDT_Submit::make(),
 			GDT_AntiCSRF::make(),
 		));
@@ -32,7 +32,7 @@ final class UserCreate extends MethodForm
 		));
 		$user->insert();
 		GDT_Hook::callWithIPC('UserActivated', $user);
-		$linkEdit = GDT_Link::make('link_user_edit')->href(href('Admin', 'UserEdit', '&id='.$user->getID()));
+		$linkEdit = GDT_Button::make('link_user_edit')->href(href('Admin', 'UserEdit', '&id='.$user->getID()));
 		return $this->message('admin_user_created')->addField($linkEdit);
 	}
 	

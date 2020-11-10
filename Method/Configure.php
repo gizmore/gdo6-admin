@@ -104,7 +104,7 @@ class Configure extends MethodForm
 			if ($gdoType->hasChanged() && $gdoType->writable && $gdoType->editable)
 			{
 				GDO_ModuleVar::createModuleVar($mod, $gdoType);
-				$info[] = t('msg_modulevar_changed', [$gdoType->displayLabel(), html($gdoType->initial), html($gdoType->getVar())]);
+				$info[] = t('msg_modulevar_changed', [$gdoType->displayLabel(), $gdoType->displayValue($gdoType->initial), html($gdoType->displayValue($gdoType->getVar()))]);
 				$moduleVarsChanged = true;
 			}
 		}

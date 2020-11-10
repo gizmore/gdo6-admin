@@ -11,9 +11,9 @@ use GDO\Form\MethodForm;
 use GDO\Util\Common;
 use GDO\Install\Installer;
 use GDO\Core\ModuleLoader;
+use GDO\UI\GDT_Bar;
 use GDO\UI\GDT_Button;
 use GDO\Util\Strings;
-use GDO\UI\GDT_ButtonBar;
 
 class Install extends MethodForm
 {
@@ -58,7 +58,7 @@ class Install extends MethodForm
 	{
 		$this->title(t('ft_admin_install', [$this->configModule->getName()]));
 		
-		$bar = GDT_ButtonBar::makeWith(GDT_Submit::make('install')->label('btn_install'))->horizontal();
+		$bar = GDT_Bar::makeWith(GDT_Submit::make('install')->label('btn_install'))->horizontal();
 		if ($this->configModule->isInstalled())
 		{
 			$tables = $this->configModule->getClasses();
@@ -94,7 +94,7 @@ class Install extends MethodForm
 		}
 		$response = call_user_func(array($this, "execute_$button"));
 		Cache::remove('gdo_modules');
-// 		$this->resetForm();
+		$this->resetForm();
 		return $response;
 	}
 	
