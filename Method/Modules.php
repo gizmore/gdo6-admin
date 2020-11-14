@@ -1,10 +1,10 @@
 <?php
 namespace GDO\Admin\Method;
+
 use GDO\Admin\GDT_ModuleVersionFS;
 use GDO\Core\MethodAdmin;
 use GDO\Core\GDO_Module;
 use GDO\DB\ArrayResult;
-use GDO\Table\GDT_Table;
 use GDO\Table\MethodTable;
 use GDO\DB\GDT_Checkbox;
 use GDO\DB\GDT_Decimal;
@@ -12,27 +12,34 @@ use GDO\Core\ModuleLoader;
 use GDO\Table\GDT_Sort;
 use GDO\Admin\GDT_ModuleNameLink;
 use GDO\Admin\GDT_ModuleAdminButton;
+
 /**
  * Overview of modules
  * @author gizmore
  * @since 3.00
- * @version 6.05
+ * @version 6.10
+ * @since 3.02
  */
 class Modules extends MethodTable
 {
 	use MethodAdmin;
 	
-	public function isFiltered() { return true; }
+	/**
+	 * @var GDO_Module[]
+	 */
+	private $modules;
+	
+	public function gdoTable() { return GDO_Module::table(); }
+	
+	/**
+	 * {@inheritDoc}
+	 * @see \GDO\Table\MethodTable::isPaginated()
+	 */
 	public function isPaginated() { return false; }
 	
 	public function getDefaultOrder() { return 'module_name'; }
 	
 	public function getPermission() { return 'staff'; }
-	
-	/**
-	 * @var GDO_Module[]
-	 */
-	private $modules;
 	
 	public function execute()
 	{
@@ -42,17 +49,15 @@ class Modules extends MethodTable
 	
 	public function getResult()
 	{
-		return ArrayResult::filtered($this->modules, GDO_Module::table(), $this->getHeaders());
+	    return new ArrayResult($this->modules, $this->gdoTable());
 	}
 	
-	public function getResultCount()
+	/**
+	 * @override
+	 */
+	public function gdoHeaders()
 	{
-		return count($this->modules);
-	}
-	
-	public function getHeaders()
-	{
-		return array(
+		return [
 			GDT_Sort::make('module_sort')->label('sort'),
 // 			GDT_Int::make('module_priority')->unsigned()->label('priority'),
 			GDT_Checkbox::make('module_enabled')->label('enabled'),
@@ -61,12 +66,7 @@ class Modules extends MethodTable
 			GDT_ModuleNameLink::make('module_name')->label('name'),
 // 			GDT_Button::make('configure_module')->label('btn_configure'),
 			GDT_ModuleAdminButton::make('administrate_module')->label('btn_admin'),
-		);
-	}
-	
-	public function createTable(GDT_Table $table)
-	{
-		$table->sortable(href('Admin', 'ModuleSort'));
+		];
 	}
 	
 }

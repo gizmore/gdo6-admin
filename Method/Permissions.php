@@ -8,42 +8,42 @@ use GDO\DB\GDT_UInt;
 use GDO\DB\GDT_Name;
 use GDO\UI\GDT_Button;
 use GDO\User\GDO_Permission;
+
 /**
- * Overview of modules
+ * Overview of permissions.
  * 
  * @author gizmore
- * 
  */
 class Permissions extends MethodQueryTable
 {
 	use MethodAdmin;
 	
+	public function gdoTable() { return GDO_Permission::table(); }
+	
 	public function getPermission() { return 'staff'; }
 	
-	public function getGDO() { return GDO_Permission::table(); }
-	
-	public function getHeaders()
+	public function gdoHeaders()
 	{
-		return array(
+		return [
 			GDT_Count::make(),
 			GDT_Button::make('btn_edit'),
 			GDT_Name::make('perm_name'),
 			GDT_UInt::make('user_count')->virtual(),
-		);
+		];
 	}
 	
 	public function getQuery()
 	{
-		$query = $this->getGDO()->select('perm_id, perm_name');
+		$query = $this->gdoTable()->select('perm_id, perm_name');
 		$query->select('COUNT(perm_user_id) user_count');
 		$query->join('LEFT JOIN gdo_userpermission ON perm_id = perm_perm_id')->uncached();
-		return $query->group('perm_id,perm_name');
+		return $query->group('perm_id, perm_name');
 	}
 	
 	public function getCountQuery()
 	{
 	    $subselect = "( SELECT COUNT(*) FROM gdo_userpermission WHERE perm_perm_id = perm_id ) user_count";
-	    return $this->getGDO()->select('COUNT(*), ' . $subselect);
+	    return $this->gdoTable()->select('COUNT(*), ' . $subselect);
 	}
 	
 	public function execute()

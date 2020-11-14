@@ -7,16 +7,21 @@ use GDO\DB\GDT_String;
 use GDO\UI\GDT_IconButton;
 use GDO\User\GDT_Username;
 use GDO\User\GDO_User;
+
 /**
  * GDO_User table for admins
  * 
  * @author gizmore
  * @see GDO_User
  * @see GWF_Table
+ * @version 6.10
+ * @since 6.02
  */
 class Users extends MethodQueryTable
 {
 	use MethodAdmin;
+	
+	public function gdoTable() { return GDO_User::table(); }
 	
 	public function getPermission() { return 'staff'; }
 	
@@ -26,19 +31,14 @@ class Users extends MethodQueryTable
 		return parent::execute()->addField($createLink);
 	}
 	
-	public function getGDO()
-	{
-		return GDO_User::table();
-	}
-	
 	public function getQuery()
 	{
-		return $this->getGDO()->select('*');
+	    return $this->gdoTable()->select('*');
 	}
 	
-	public function getHeaders()
+	public function gdoHeaders()
 	{
-		$gdo = $this->getGDO();
+		$gdo = $this->gdoTable();
 		return array(
 			GDT_IconButton::make('edit_admin')->icon('edit'),
 			$gdo->gdoColumn('user_id'),

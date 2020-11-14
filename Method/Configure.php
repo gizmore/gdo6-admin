@@ -17,10 +17,15 @@ use GDO\UI\GDT_Divider;
 use GDO\Util\Common;
 use GDO\Core\ModuleLoader;
 use GDO\Language\Trans;
-use GDO\UI\GDT_Paragraph;
 use GDO\UI\GDT_Panel;
 use GDO\Core\GDT_Response;
 
+/**
+ * Configure a module.
+ * @author gizmore
+ * @version 6.10
+ * @since 3.04
+ */
 class Configure extends MethodForm
 {
 	use MethodAdmin;
@@ -46,7 +51,7 @@ class Configure extends MethodForm
 		# Response for install and configure
 		if ($descr = $this->configModule->getModuleDescription())
 		{
-			$panelDescr = GDT_Panel::makeWith(GDT_Paragraph::withHTML($descr));
+			$panelDescr = GDT_Panel::make()->textRaw($descr);
 			$response->addField($panelDescr);
 		}
 		

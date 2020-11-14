@@ -22,10 +22,9 @@ class ViewPermission extends MethodQueryTable
 	
 	public function getPermission() { return 'staff'; }
 	
-	public function execute()
+	public function gdoTable()
 	{
-	    $this->renderPermTabs('Admin');
-		return parent::execute();
+	    return GDO_UserPermission::table();
 	}
 	
 	public function init()
@@ -33,7 +32,7 @@ class ViewPermission extends MethodQueryTable
 		$this->permission = GDO_Permission::table()->find(Common::getRequestString('permission'));
 	}
 	
-	public function getHeaders()
+	public function gdoHeaders()
 	{
 		return array(
 			GDT_Count::make('count'),
@@ -44,15 +43,21 @@ class ViewPermission extends MethodQueryTable
 		);
 	}
 	
-	public function onDecorateTable(GDT_Table $table)
+	public function createTable(GDT_Table $table)
 	{
 		$table->fetchAs(GDO_User::table());
 	}
 	
 	public function getQuery()
 	{
-		return GDO_UserPermission::table()->select('gdo_user.*, gdo_userpermission.*')->joinObject('perm_user_id')->where('perm_perm_id='.$this->permission->getID())->uncached();
+		return $this->gdoTable()->select('gdo_user.*, gdo_userpermission.*')->
+		joinObject('perm_user_id')->where('perm_perm_id='.$this->permission->getID())->uncached();
 	}
-	
+    
+	public function execute()
+	{
+	    $this->renderPermTabs('Admin');
+	    return parent::execute();
+	}
 	
 }
