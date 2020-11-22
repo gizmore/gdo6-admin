@@ -25,4 +25,10 @@ final class GDT_ModuleVersionFS extends GDT_Int
 		$vb = $b->module_version;
 		return $va == $vb ? true : ($va < $vb ? -1 : 1);
 	}
+	
+	public function getVar()
+	{
+	    return $this->getModule()->module_version;
+	}
+
 }
