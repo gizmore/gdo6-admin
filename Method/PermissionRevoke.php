@@ -55,7 +55,7 @@ class PermissionRevoke extends MethodForm
 	public function formValidated(GDT_Form $form)
 	{
 		$condition = sprintf('perm_user_id=%s AND perm_perm_id=%s', $form->getFormValue('perm_user_id')->getID(), $form->getFormVar('perm_perm_id'));
-		GDO_UserPermission::table()->deleteWhere($condition)->exec();
+		GDO_UserPermission::table()->deleteWhere($condition);
 		$user = $form->getFormValue('perm_user_id');
 		$user->changedPermissions();
 		$affected = Database::instance()->affectedRows();
