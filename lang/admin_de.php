@@ -60,4 +60,6 @@ return array(
 'admin_user_created' => 'Der Benutzer wurde erfolgreich angelegt.',
 'link_user_edit' => 'Benutzer bearbeiten',
 'mdescr_admin_configure' => 'Modul konfigurieren',
+################################################################
+'msg_perm_revoked' => 'Die Berechtigung wurde zurückgewiesen.',
 );

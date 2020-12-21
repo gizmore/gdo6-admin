@@ -1,9 +1,9 @@
 <?php
 namespace GDO\Admin\Test;
 
-use PHPUnit\Framework\TestCase;
 use GDO\Admin\Method\Permissions;
 use GDO\Tests\MethodTest;
+use GDO\Tests\TestCase;
 use GDO\Core\GDO_Module;
 
 final class VirtualFieldTest extends TestCase

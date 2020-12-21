@@ -60,4 +60,6 @@ return array(
 'admin_user_created' => 'The user has been created successfully.',
 'link_user_edit' => 'Edit user',
 'mdescr_admin_configure' => 'Configure a module',
+################################################################
+'msg_perm_revoked' => 'The permission has been revoked.',
 );
