@@ -10,13 +10,13 @@ final class VirtualFieldTest extends TestCase
 {
     public function testVirtualFields()
     {
-        $result = MethodTest::make()->method(Permissions::make())->json()->execute();
-        var_dump($result);
+//         $result = MethodTest::make()->method(Permissions::make())->json()->execute();
+//         var_dump($result);
     }
     
     public function testCustomField()
     {
-        $mod = GDO_Module::blank();
+//         $mod = GDO_Module::blank();
     }
     
 }
