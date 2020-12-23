@@ -13,7 +13,7 @@ use GDO\User\GDO_User;
  * 
  * @author gizmore
  * @see GDO_User
- * @see GWF_Table
+ * @see GDT_Table
  * @version 6.10
  * @since 6.02
  */
@@ -31,10 +31,10 @@ class Users extends MethodQueryTable
 		return parent::execute()->addField($createLink);
 	}
 	
-	public function getQuery()
-	{
-	    return $this->gdoTable()->select('*');
-	}
+// 	public function getQuery()
+// 	{
+// 	    return $this->gdoTable()->select('*');
+// 	}
 	
 	public function gdoHeaders()
 	{
