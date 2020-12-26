@@ -1,22 +1,27 @@
 <?php
 namespace GDO\Admin\Test;
 
-use GDO\Admin\Method\Permissions;
-use GDO\Tests\MethodTest;
 use GDO\Tests\TestCase;
 use GDO\Core\GDO_Module;
+use function PHPUnit\Framework\assertFalse;
+use GDO\Admin\GDT_ModuleVersionFS;
+use function PHPUnit\Framework\assertEquals;
+use GDO\Core\Module_Core;
 
 final class VirtualFieldTest extends TestCase
 {
-    public function testVirtualFields()
+    public function testModuleVersionFS()
     {
-//         $result = MethodTest::make()->method(Permissions::make())->json()->execute();
-//         var_dump($result);
+        $mod = Module_Core::instance();
+        $gdt = GDT_ModuleVersionFS::make()->gdo($mod);
+        $html = $gdt->displayVar();
+        assertEquals("6.10", $html);
     }
     
     public function testCustomField()
     {
-//         $mod = GDO_Module::blank();
+        $mod = GDO_Module::blank(['foo' => 'bar']);
+        assertFalse($mod->hasVar('foo'), 'You cannot assign custom fields via blank.');
     }
     
 }

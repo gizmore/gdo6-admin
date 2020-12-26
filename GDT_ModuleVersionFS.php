@@ -28,7 +28,8 @@ final class GDT_ModuleVersionFS extends GDT_Int
 	
 	public function getVar()
 	{
-	    return $this->getModule()->module_version;
+	    $m = $this->getModule();
+	    return $m ? $m->module_version : '0';
 	}
 
 }
