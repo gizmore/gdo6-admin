@@ -1,5 +1,9 @@
 <?php
 return array(
+'mtitle_admin_modules' => 'Modules',
+'mtitle_admin_users' => 'Admin overview of users',
+'mtitle_admin_permissions' => 'Permission Overview',
+################################################################
 'btn_admin' => 'Admin',
 'btn_phpinfo' => 'PHPInfo',
 'btn_clearcache' => 'Clear-Cache',
