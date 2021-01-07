@@ -7,6 +7,7 @@ use function PHPUnit\Framework\assertFalse;
 use GDO\Admin\GDT_ModuleVersionFS;
 use function PHPUnit\Framework\assertEquals;
 use GDO\Core\Module_Core;
+use function PHPUnit\Framework\assertTrue;
 
 final class VirtualFieldTest extends TestCase
 {
@@ -22,6 +23,7 @@ final class VirtualFieldTest extends TestCase
     {
         $mod = GDO_Module::blank(['foo' => 'bar']);
         assertFalse($mod->hasVar('foo'), 'You cannot assign custom fields via blank.');
+        assertTrue($mod->hasColumn('module_name'), 'A GDO has valid GDT fields.');
     }
     
 }
