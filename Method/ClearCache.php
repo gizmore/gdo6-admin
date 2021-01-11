@@ -1,6 +1,7 @@
 <?php
 namespace GDO\Admin\Method;
 
+use GDO\Core\GDO;
 use GDO\Core\MethodAdmin;
 use GDO\Core\GDT_Hook;
 use GDO\Core\Method;
@@ -9,9 +10,12 @@ use GDO\File\FileUtil;
 use GDO\Util\MinifyJS;
 use GDO\Core\Module_Core;
 use GDO\Core\Website;
+use GDO\Core\ModuleLoader;
 
 /**
  * Clears all client and server caches.
+ * 
+ * @TODO move to module core.
  * 
  * @author gizmore
  * @version 6.10
@@ -27,18 +31,40 @@ final class ClearCache extends Method
 	
 	public function execute()
 	{
-		# Flush memcached.
-		Cache::flush();
-		# Remove minified JS
-		FileUtil::removeDir(MinifyJS::tempDirS());
-		# Call hook
-		GDT_Hook::callWithIPC('ClearCache');
-		# Retrigger assets
-		$core = Module_Core::instance();
-		$assetVersion = $core->cfgAssetVersion() + 0.01;
-		$core->saveConfigVar('asset_revision', sprintf('%.02f', round($assetVersion, 2)));
-		# Done
+	    $this->clearCache();
 		Website::redirectMessage('msg_cache_flushed', null, Website::hrefBack());
+	}
+	
+	public function clearCache()
+	{
+	    # Flush memcached.
+	    Cache::flush();
+	    # Flush GDO cache
+	    $this->flushAllGDOCaches();
+	    # Remove minified JS
+	    FileUtil::removeDir(MinifyJS::tempDirS());
+	    # Call hook
+	    GDT_Hook::callWithIPC('ClearCache');
+	    # Retrigger assets
+	    $core = Module_Core::instance();
+	    $assetVersion = $core->cfgAssetVersion() + 0.01;
+	    $core->saveConfigVar('asset_revision', sprintf('%.02f', round($assetVersion, 2)));
+	}
+	
+	private function flushAllGDOCaches()
+	{
+	    foreach (ModuleLoader::instance()->getEnabledModules() as $module)
+	    {
+	        if ($classes = $module->getClasses())
+	        {
+	            foreach ($classes as $classname)
+	            {
+	                /** @var $table GDO **/
+	                $table = call_user_func([$classname, 'table']);
+	                $table->clearCache();
+	            }
+	        }
+	    }
 	}
 
 }
