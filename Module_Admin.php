@@ -6,6 +6,19 @@ use GDO\UI\GDT_Link;
 use GDO\User\GDO_User;
 use GDO\UI\GDT_Page;
 
+/**
+ * The admin module offers:
+ * 
+ * - a user list and crud
+ * - permission list and crud
+ * - module administration
+ * 
+ * @TODO: restrict admin methods to a second admin password (like in gwf3)
+ * 
+ * @author gizmore
+ * @version 6.10
+ * @since 3.00
+ */
 class Module_Admin extends GDO_Module
 {
 	##############
