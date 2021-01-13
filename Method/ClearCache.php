@@ -32,7 +32,7 @@ final class ClearCache extends Method
 	public function execute()
 	{
 	    $this->clearCache();
-		Website::redirectMessage('msg_cache_flushed', null, Website::hrefBack());
+		return Website::redirectMessage('msg_cache_flushed', null, Website::hrefBack());
 	}
 	
 	public function clearCache()
