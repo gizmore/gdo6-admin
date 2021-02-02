@@ -22,6 +22,7 @@ use GDO\Core\GDT_Response;
 
 /**
  * Configure a module.
+ * @TODO: Move to core or make admin a core module?
  * @author gizmore
  * @version 6.10
  * @since 3.04
@@ -67,7 +68,7 @@ class Configure extends MethodForm
 	
 	public function renderInstall()
 	{
-		return Install::make()->execMethod();
+		return Install::make()->execute();
 	}
 	
 	public function createForm(GDT_Form $form)
@@ -109,7 +110,10 @@ class Configure extends MethodForm
 			if ($gdoType->hasChanged() && $gdoType->writable && $gdoType->editable)
 			{
 				GDO_ModuleVar::createModuleVar($mod, $gdoType);
-				$info[] = t('msg_modulevar_changed', [$gdoType->displayLabel(), $gdoType->displayValue($gdoType->initial), html($gdoType->displayValue($gdoType->getVar()))]);
+				$info[] = t('msg_modulevar_changed',
+				    [$gdoType->displayLabel(),
+				        $gdoType->displayValue($gdoType->initial),
+				        $gdoType->displayValue($gdoType->getVar())]);
 				$moduleVarsChanged = true;
 			}
 		}
