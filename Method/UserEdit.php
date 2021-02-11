@@ -84,7 +84,7 @@ class UserEdit extends MethodForm
 			$this->user->saveVar('user_password', BCrypt::create($password)->__toString());
 			return $this->message('msg_user_password_is_now', [$password])->add(parent::formValidated($form));
 		}
-		return parent::formValidated($form);
+		return parent::formValidated($form)->add($this->renderPage());
 	}
 	
 	public function onSubmit_btn_delete(GDT_Form $form)
