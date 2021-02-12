@@ -94,8 +94,8 @@ class Configure extends MethodForm
 				$form->addField($gdoType); #->var($mod->getConfigVar($gdoType->name)));
 			}
 		}
-		$form->addField(GDT_Submit::make()->label('btn_save'));
-		$form->addField(GDT_AntiCSRF::make());
+		$form->actions()->addField(GDT_Submit::make()->label('btn_save'));
+		$form->actions()->addField(GDT_AntiCSRF::make());
 	}
 	
 	public function formValidated(GDT_Form $form)

@@ -47,9 +47,9 @@ class PermissionRevoke extends MethodForm
 		$form->addFields(array(
 			GDT_User::make('perm_user_id')->notNull()->initial($this->user ? $this->user->getID() : '0'),
 			GDT_Permission::make('perm_perm_id')->notNull()->initial($this->permission ? $this->permission->getID() : '0'),
-			GDT_Submit::make(),
 			GDT_AntiCSRF::make(),
 		));
+		$form->actions()->addField(GDT_Submit::make());
 	}
 	
 	public function formValidated(GDT_Form $form)

@@ -26,9 +26,9 @@ class PermissionAdd extends MethodForm
 		$form->addFields(array(
 			$gdo->gdoColumn('perm_name'),
 		    $gdo->gdoColumn('perm_level'),
-			GDT_Submit::make(),
 			GDT_AntiCSRF::make(),
 		));
+		$form->actions()->addField(GDT_Submit::make());
 	}
 
 	public function formValidated(GDT_Form $form)

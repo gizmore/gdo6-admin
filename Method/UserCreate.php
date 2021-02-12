@@ -19,9 +19,9 @@ final class UserCreate extends MethodForm
 		$users = GDO_User::table();
 		$form->addFields(array(
 			$users->gdoColumn('user_name')->notNull(),
-			GDT_Submit::make(),
 			GDT_AntiCSRF::make(),
 		));
+		$form->actions()->addField(GDT_Submit::make());
 	}
 	
 	public function formValidated(GDT_Form $form)

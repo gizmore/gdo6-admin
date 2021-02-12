@@ -25,6 +25,7 @@ class Module_Admin extends GDO_Module
 	### Module ###
 	##############
 	public function onLoadLanguage() { return $this->loadLanguage('lang/admin'); }
+	public function getDependencies() { return ['Login']; }
 
 	###############
 	### Navbars ###

@@ -58,31 +58,31 @@ class Install extends MethodForm
 	{
 		$this->title(t('ft_admin_install', [$this->configModule->getName()]));
 		
-		$bar = GDT_Bar::makeWith(GDT_Submit::make('install')->label('btn_install'))->horizontal();
+		$form->actions()->addField(GDT_Submit::make('install')->label('btn_install'));
+
 		if ($this->configModule->isInstalled())
 		{
 			$tables = $this->configModule->getClasses();
 			$modules = empty($tables) ? t('enum_none') : implode(', ', array_map(function($t){return Strings::rsubstrFrom($t, '\\');}, $tables));
 			$text = t('confirm_wipe_module', [$modules]);
-			$bar->addField(GDT_Submit::make('uninstall')->label('btn_uninstall')->attr('onclick', 'return confirm(\''.$text.'\')"'));
-			$bar->addField(GDT_Submit::make('reinstall')->label('btn_reinstall'));
+			$form->actions()->addField(GDT_Submit::make('uninstall')->label('btn_uninstall')->attr('onclick', 'return confirm(\''.$text.'\')"'));
+			$form->actions()->addField(GDT_Submit::make('reinstall')->label('btn_reinstall'));
 			if ($this->configModule->isEnabled())
 			{
-				$bar->addField(GDT_Submit::make('disable')->label('btn_disable'));
+			    $form->actions()->addField(GDT_Submit::make('disable')->label('btn_disable'));
 			}
 			else
 			{
-				$bar->addField(GDT_Submit::make('enable')->label('btn_enable'));
+				$form->actions()->addField(GDT_Submit::make('enable')->label('btn_enable'));
 			}
 			
 			if ($adminHREF = $this->configModule->href_administrate_module())
 			{
-				$bar->addField(GDT_Button::make('href_admin')->href($adminHREF));
+			    $form->actions()->addField(GDT_Button::make('href_admin')->href($adminHREF));
 			}
 		}
 		
-		$form->addField($bar);
-		$form->addField(GDT_AntiCSRF::make());
+		$form->actions()->addField(GDT_AntiCSRF::make());
 	}
 	
 	public function executeButton($button)
