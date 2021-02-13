@@ -46,10 +46,9 @@ class Permissions extends MethodQueryTable
 	    return $this->gdoTable()->select('COUNT(*), ' . $subselect);
 	}
 	
-	public function execute()
+	public function beforeExecute()
 	{
 	    $this->renderPermTabs();
-		return parent::execute();
 	}
 	
 }

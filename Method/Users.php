@@ -31,11 +31,6 @@ class Users extends MethodQueryTable
 		return parent::execute()->addField($createLink);
 	}
 	
-// 	public function getQuery()
-// 	{
-// 	    return $this->gdoTable()->select('*');
-// 	}
-	
 	public function gdoHeaders()
 	{
 		$gdo = $this->gdoTable();
@@ -45,7 +40,7 @@ class Users extends MethodQueryTable
 			$gdo->gdoColumn('user_country')->withName(false),
 			GDT_String::make('user_name'),
 			$gdo->gdoColumn('user_type'),
-// 			$gdo->gdoColumn('user_level'),
+			$gdo->gdoColumn('user_level'),
 			GDT_Username::make('username')->orderable(false),
 			$gdo->gdoColumn('user_credits'),
 			$gdo->gdoColumn('user_email'),
