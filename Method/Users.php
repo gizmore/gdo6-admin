@@ -34,7 +34,7 @@ class Users extends MethodQueryTable
 	public function gdoHeaders()
 	{
 		$gdo = $this->gdoTable();
-		return array(
+		return [
 			GDT_IconButton::make('edit_admin')->icon('edit'),
 			$gdo->gdoColumn('user_id'),
 			$gdo->gdoColumn('user_country')->withName(false),
@@ -46,7 +46,7 @@ class Users extends MethodQueryTable
 			$gdo->gdoColumn('user_email'),
 			$gdo->gdoColumn('user_register_time'),
 			$gdo->gdoColumn('user_last_activity'),
-		);
+		];
 	}
 	
 }
