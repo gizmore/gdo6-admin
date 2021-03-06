@@ -14,18 +14,18 @@ use GDO\Form\MethodForm;
 use GDO\DB\GDT_Name;
 use GDO\DB\GDT_Version;
 use GDO\UI\GDT_Divider;
-use GDO\Util\Common;
 use GDO\Core\ModuleLoader;
 use GDO\Language\Trans;
 use GDO\UI\GDT_Panel;
 use GDO\Core\GDT_Response;
+use GDO\Core\GDT_Module;
 
 /**
  * Configure a module.
  * @TODO: Move to core or make admin a core module?
  * @author gizmore
- * @version 6.10
- * @since 3.04
+ * @version 6.10.1
+ * @since 3.4.0
  */
 class Configure extends MethodForm
 {
@@ -38,15 +38,25 @@ class Configure extends MethodForm
 	
 	public function getPermission() { return 'admin'; }
 	
+// 	public function isTrivial() { return false; }
+	
+	public function gdoParameters()
+	{
+	    return [
+	        GDT_Module::make('module')->notNull(),
+	    ];
+	}
+	
+	public function init()
+	{
+	    # Load
+	    ModuleLoader::instance()->loadModules(false, true);
+	    $this->configModule = $this->gdoParameterValue('module');
+	}
+	
 	public function execute()
 	{
-		# Load
-		ModuleLoader::instance()->loadModules(false, true);
-		if (!($this->configModule = ModuleLoader::instance()->getModule(Common::getRequestString('module'))))
-		{
-			return $this->error('err_module')->add(Modules::make()->execMethod());
-		}
-		
+	    # Response
 		$response = GDT_Response::make();
 		
 		# Response for install and configure
@@ -56,19 +66,22 @@ class Configure extends MethodForm
 			$response->addField($panelDescr);
 		}
 		
+		# Response for install panel
 		$response->add($this->renderInstall());
 		
+		# Configuration if installed
 		if ($this->configModule->isPersisted())
 		{
 			$response->add(parent::execute()); # configure
 		}
 		
+		# Respond
 		return $response;
 	}
 	
 	public function renderInstall()
 	{
-		return Install::make()->execute();
+		return Install::make()->executeWithInit();
 	}
 	
 	public function createForm(GDT_Form $form)
@@ -127,4 +140,5 @@ class Configure extends MethodForm
 		# Announce
 		return $this->message('msg_module_saved', [implode('<br/>', $info)])->add($this->renderPage());
 	}
+
 }

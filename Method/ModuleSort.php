@@ -5,11 +5,13 @@ use GDO\Core\Method;
 use GDO\Core\GDO_Module;
 use GDO\DB\Cache;
 use GDO\Table\MethodSort;
+
 /**
  * Drag and drop sorting of modules.
+ * 
  * @author gizmore
- * @since 5.0
- * @version 5.0
+ * @version 6.10.1
+ * @since 5.0.0
  */
 final class ModuleSort extends MethodSort
 {
@@ -22,10 +24,9 @@ final class ModuleSort extends MethodSort
 
 	public function gdoSortObjects() { return GDO_Module::table(); }
 
-	public function execute()
+	public function afterExecute()
 	{
-		$response = parent::execute();
 		Cache::remove('gdo_modules');
-		return $response;
 	}
+
 }

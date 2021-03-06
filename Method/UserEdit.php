@@ -8,42 +8,49 @@ use GDO\Form\GDT_Form;
 use GDO\Form\GDT_Submit;
 use GDO\Form\MethodForm;
 use GDO\User\GDO_User;
-use GDO\Util\Common;
 use GDO\Util\BCrypt;
 use GDO\Core\Website;
 use GDO\UI\GDT_Bar;
 use GDO\UI\GDT_Link;
 use GDO\Form\GDT_DeleteButton;
 use GDO\UI\GDT_Page;
+use GDO\User\GDT_User;
 
 /**
  * Edit a user.
  * 
  * @author gizmore
- * @see User
+ * @version 6.10.1
+ * @since 3.0.4
+ * @see GDO_User
  */
 class UserEdit extends MethodForm
 {
-	use MethodAdmin;
+	use MethodAdmin; # admin protection
 	
 	/**
 	 * @var GDO_User
 	 */
 	private $user;
 	
-	public function execute()
+	public function gdoParameters()
 	{
-		if (!($this->user = GDO_User::getById(Common::getRequestString('id'))))
-		{
-			return $this->error('err_user')->add(Users::make()->execMethod());
-		}
-		
-		$barPermissions = GDT_Bar::make()->horizontal();
-		$barPermissions->addField(GDT_Link::make('link_edit_permissions')->href(href('Admin', 'PermissionGrant', '&form[perm_user_id]='.$this->user->getID())));
-		
-		GDT_Page::$INSTANCE->topTabs->addField($barPermissions);
-		
-		return parent::execute();
+	    return [
+	        GDT_User::make('user')->notNull(),
+	    ];
+	}
+	
+	public function init()
+	{
+	    $this->user = $this->gdoParameterValue('user');
+	}
+	
+	public function beforeExecute()
+	{
+	    $this->renderNavBar();
+	    $barPermissions = GDT_Bar::make()->horizontal();
+	    $barPermissions->addField(GDT_Link::make('link_edit_permissions')->href(href('Admin', 'PermissionGrant', '&form[perm_user_id]='.$this->user->getID())));
+	    GDT_Page::$INSTANCE->topTabs->addField($barPermissions);
 	}
 	
 	public function createForm(GDT_Form $form)
@@ -91,8 +98,7 @@ class UserEdit extends MethodForm
 	{
 		$this->user->delete();
 		GDT_Hook::callWithIPC("UserDeleted", $this->user);
-		return $this->message('msg_user_deleted', [$this->user->displayName()])->
-			add(Website::redirect(href('Admin', 'Users')));
-		
+		return Website::redirectMessage('msg_user_deleted', [$this->user->displayNameLabel()], href('Admin', 'Users'));
 	}
+	
 }

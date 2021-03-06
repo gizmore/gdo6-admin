@@ -8,44 +8,59 @@ use GDO\Form\GDT_AntiCSRF;
 use GDO\Form\GDT_Form;
 use GDO\Form\GDT_Submit;
 use GDO\Form\MethodForm;
-use GDO\Util\Common;
 use GDO\Install\Installer;
 use GDO\Core\ModuleLoader;
 use GDO\UI\GDT_Button;
 use GDO\Util\Strings;
+use GDO\Core\GDT_Module;
 
+/**
+ * Install a module. Wipe a module. Enable and disable a module.
+ * 
+ * @TODO Automatic DB migration for GDO. triggered by re-install module.
+ * 
+ * @author gizmore
+ * @version 6.10.1
+ * @since 3.0.0
+ */
 class Install extends MethodForm
 {
 	use MethodAdmin;
 	
-	public function getPermission() { return 'admin'; }
-	
 	public function formName() { return 'form_install'; }
-	
-	public function beforeExecute() {}
+	public function getPermission() { return 'admin'; }
+	public function beforeExecute() {} # hide tabs (multi method configure page fix)
 	
 	/**
 	 * @var GDO_Module
 	 */
 	private $configModule;
 	
-	public function execute()
+	public function gdoParameters()
+	{
+	    return [
+	        GDT_Module::make('module')->uninstalled()->notNull(),
+	    ];
+	}
+	
+	public function init()
 	{
 		ModuleLoader::instance()->loadModules(true, true);
-		
-		if ($this->configModule = ModuleLoader::instance()->getModule(Common::getRequestString('module')))
+		$this->configModule = $this->gdoParameterValue('module');
+	}
+	
+	public function execute()
+	{
+		$buttons = ['install', 'reinstall', 'uninstall', 'enable', 'disable'];
+		$form = $this->formName();
+		foreach ($buttons as $button)
 		{
-			$buttons = ['install', 'reinstall', 'uninstall', 'enable', 'disable'];
-			$form = $this->formName();
-			foreach ($buttons as $button)
+			if (isset($_REQUEST[$form][$button]))
 			{
-				if (isset($_REQUEST[$form][$button]))
-				{
-					return $this->executeButton($button)->add($this->renderPage());
-				}
+				return $this->executeButton($button)->add($this->renderPage());
 			}
-			return $this->renderPage();
 		}
+		return $this->renderPage();
 	}
 	
 	/**
@@ -81,7 +96,7 @@ class Install extends MethodForm
 			}
 		}
 		
-		$form->actions()->addField(GDT_AntiCSRF::make());
+		$form->addField(GDT_AntiCSRF::make());
 	}
 	
 	public function executeButton($button)

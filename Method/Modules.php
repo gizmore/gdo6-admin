@@ -14,11 +14,10 @@ use GDO\Admin\GDT_ModuleNameLink;
 use GDO\Admin\GDT_ModuleAdminButton;
 
 /**
- * Overview of modules
+ * Overview of all modules in FS and DB.
  * @author gizmore
- * @since 3.00
- * @version 6.10
- * @since 3.02
+ * @version 6.10.1
+ * @since 3.0.2
  */
 class Modules extends MethodTable
 {
@@ -43,7 +42,7 @@ class Modules extends MethodTable
 	
 	public function execute()
 	{
-		$this->modules = ModuleLoader::instance()->loadModules(true, true);
+		$this->modules = ModuleLoader::instance()->loadModules(false, true);
 		return parent::execute();
 	}
 	
@@ -58,7 +57,7 @@ class Modules extends MethodTable
 	public function gdoHeaders()
 	{
 		return [
-			GDT_Sort::make('module_sort')->label('sort'),
+			GDT_Sort::make('module_sort'),
 // 			GDT_Int::make('module_priority')->unsigned()->label('priority'),
 			GDT_Checkbox::make('module_enabled')->label('enabled'),
 			GDT_Decimal::make('module_version')->label('version_db'),

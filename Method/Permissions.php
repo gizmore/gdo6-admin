@@ -12,6 +12,8 @@ use GDO\User\GDO_Permission;
 /**
  * Overview of permissions.
  * 
+ * @version 6.10.1
+ * @since 6.0.0
  * @author gizmore
  */
 class Permissions extends MethodQueryTable
@@ -32,23 +34,18 @@ class Permissions extends MethodQueryTable
 		];
 	}
 	
+	public function beforeExecute()
+	{
+	    $this->renderNavBar();
+	    $this->renderPermTabs();
+	}
+	
 	public function getQuery()
 	{
 		$query = $this->gdoTable()->select('perm_id, perm_name');
 		$query->select('COUNT(perm_user_id) user_count');
 		$query->join('LEFT JOIN gdo_userpermission ON perm_id = perm_perm_id')->uncached();
 		return $query->group('perm_id, perm_name');
-	}
-	
-	public function getCountQuery()
-	{
-	    $subselect = "( SELECT COUNT(*) FROM gdo_userpermission WHERE perm_perm_id = perm_id ) user_count";
-	    return $this->gdoTable()->select('COUNT(*), ' . $subselect);
-	}
-	
-	public function beforeExecute()
-	{
-	    $this->renderPermTabs();
 	}
 	
 }

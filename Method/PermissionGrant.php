@@ -14,20 +14,20 @@ class PermissionGrant extends MethodForm
 {
 	use MethodAdmin;
 	
-	public function execute()
+	public function beforeExecute()
 	{
+	    $this->renderNavBar();
 	    $this->renderPermTabs();
-		return parent::execute();
 	}
 	
 	public function createForm(GDT_Form $form)
 	{
 		$gdo = GDO_UserPermission::table();
-		$form->addFields(array(
+		$form->addFields([
 			$gdo->gdoColumn('perm_user_id'),
-			$gdo->gdoColumn('perm_perm_id')->emptyInitial(t('choose_permission')),
+			$gdo->gdoColumn('perm_perm_id')->notNull()->emptyInitial(t('choose_permission')),
 			GDT_AntiCSRF::make(),
-		));
+		]);
 		$form->actions()->addField(GDT_Submit::make());
 	}
 	
@@ -35,10 +35,10 @@ class PermissionGrant extends MethodForm
 	{
 		$userpermission = GDO_UserPermission::blank($form->getFormData())->replace();
 		$permission = $userpermission->getPermission();
+		/** @var $permission GDO_Permission **/
 		$permission = $form->getFormValue('perm_perm_id');
-		$permission instanceof GDO_Permission;
+		/** @var $user GDO_User **/
 		$user = $form->getFormValue('perm_user_id');
-		$user instanceof GDO_User;
 		$user->changedPermissions();
 		$this->resetForm();
 		return $this->message('msg_perm_granted', [$permission->displayName(), $user->displayNameLabel()])->add($this->renderPage());
