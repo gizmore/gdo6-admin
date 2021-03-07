@@ -63,6 +63,11 @@ class Install extends MethodForm
 		return $this->renderPage();
 	}
 	
+	public function getTitle()
+	{
+	    return t('ft_admin_install', [$this->configModule->displayName()]);
+	}
+	
 	/**
 	 * The 3 button install form.
 	 * {@inheritDoc}
@@ -70,8 +75,6 @@ class Install extends MethodForm
 	 */
 	public function createForm(GDT_Form $form)
 	{
-		$this->title(t('ft_admin_install', [$this->configModule->getName()]));
-		
 		$form->actions()->addField(GDT_Submit::make('install')->label('btn_install'));
 
 		if ($this->configModule->isInstalled())
@@ -99,6 +102,9 @@ class Install extends MethodForm
 		$form->addField(GDT_AntiCSRF::make());
 	}
 	
+	###############
+	### Execute ###
+	###############
 	public function executeButton($button)
 	{
 		$form = $this->getForm();

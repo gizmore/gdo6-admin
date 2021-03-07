@@ -38,8 +38,6 @@ class Configure extends MethodForm
 	
 	public function getPermission() { return 'admin'; }
 	
-// 	public function isTrivial() { return false; }
-	
 	public function gdoParameters()
 	{
 	    return [
@@ -84,10 +82,20 @@ class Configure extends MethodForm
 		return Install::make()->executeWithInit();
 	}
 	
+	public function getTitle()
+	{
+	    return t('ft_admin_configure', [$this->configModule->displayName()]);
+	}
+	
+	public function getDescription()
+	{
+	    return t('mdescr_admin_configure', [$this->configModule->displayName()]);
+	}
+	
 	public function createForm(GDT_Form $form)
 	{
 		$mod = $this->configModule;
-		$this->title(t('ft_admin_configure', [$mod->getName()]));
+// 		$form->tit
 		$form->addField(GDT_Name::make('module_name')->writable(false));
 		$form->addField(GDT_Path::make('module_path')->writable(false)->initial($mod->filePath()));
 		$form->addField(GDT_Version::make('module_version')->writable(false));

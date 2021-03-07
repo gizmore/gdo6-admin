@@ -15,6 +15,8 @@ use GDO\Util\Common;
 
 /**
  * Revoke a permission.
+ * @version 6.10.1
+ * @since 3.1.0
  * @author gizmore
  */
 class PermissionRevoke extends MethodForm
@@ -35,8 +37,14 @@ class PermissionRevoke extends MethodForm
 	
 	public function init()
 	{
-		$this->user = GDO_User::table()->getById(Common::getRequestString('user'));
-		$this->permission = GDO_Permission::table()->getById(Common::getRequestString('perm'));
+	    if ($userid = Common::getRequestString('user'))
+	    {
+	        $this->user = GDO_User::table()->getById($userid);
+	    }
+	    if ($permid = Common::getRequestString('perm'))
+	    {
+	        $this->permission = GDO_Permission::table()->getById($permid);
+	    }
 	}
 	
 	public function execute()

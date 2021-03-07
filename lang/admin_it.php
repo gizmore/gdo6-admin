@@ -1,7 +1,7 @@
 <?php
 return array(
-'mtitle_admin_modules' => 'Moduli',
-'mtitle_admin_users' => 'Panoramica amministrativa degli utenti',
+'list_admin_modules' => '%s Moduli',
+'list_admin_users' => 'Panoramica amministrativa degli %s utenti',
 ################################################################
 'btn_admin' =>'Administratore',
 'btn_phpinfo' =>'Info PHP',
@@ -41,8 +41,9 @@ return array(
 'msg_user_password_is_now' =>'Il Password di questo utente é: %s',
 ################################################################
 'link_add_perm' =>'Nuova autorizzazione',
-'link_grant_perm' =>'Assegna autorizzazione',
 'link_edit_permissions' =>'Cambia autorizzazione',
+'link_grant_perm' =>'Assegna autorizzazione',
+'link_revoke_permissions' =>'Autorizzazione respinta',
 'ft_admin_permissionadd' => 'Aggiungi autorizzazione',
 'user_count' =>'Membri',
 'perm_revoke' =>'Assegna autorizzazione',

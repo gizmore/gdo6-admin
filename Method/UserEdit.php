@@ -53,11 +53,13 @@ class UserEdit extends MethodForm
 	    GDT_Page::$INSTANCE->topTabs->addField($barPermissions);
 	}
 	
+	public function getTitle()
+	{
+	    return t('ft_admin_useredit', [$this->user->displayNameLabel()]);
+	}
+	
 	public function createForm(GDT_Form $form)
 	{
-		# Set title
-		$this->title(t('ft_admin_useredit', [$this->user->displayNameLabel()]));
-		
 		# Add all columns
 		foreach ($this->user->gdoColumnsCache() as $gdoType)
 		{

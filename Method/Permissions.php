@@ -4,8 +4,6 @@ namespace GDO\Admin\Method;
 use GDO\Core\MethodAdmin;
 use GDO\Table\GDT_Count;
 use GDO\Table\MethodQueryTable;
-use GDO\DB\GDT_UInt;
-use GDO\DB\GDT_Name;
 use GDO\UI\GDT_Button;
 use GDO\User\GDO_Permission;
 
@@ -24,13 +22,20 @@ class Permissions extends MethodQueryTable
 	
 	public function getPermission() { return 'staff'; }
 	
+	public function getTitle()
+	{
+	    return t('btn_permissions');
+	}
+
 	public function gdoHeaders()
 	{
+	    $perms = GDO_Permission::table();
 		return [
 			GDT_Count::make(),
 			GDT_Button::make('btn_edit'),
-			GDT_Name::make('perm_name'),
-			GDT_UInt::make('user_count')->virtual(),
+		    $perms->gdoColumn('perm_name'),
+		    $perms->gdoColumn('perm_level'),
+		    $perms->gdoColumn('perm_usercount'),
 		];
 	}
 	
@@ -38,14 +43,6 @@ class Permissions extends MethodQueryTable
 	{
 	    $this->renderNavBar();
 	    $this->renderPermTabs();
-	}
-	
-	public function getQuery()
-	{
-		$query = $this->gdoTable()->select('perm_id, perm_name');
-		$query->select('COUNT(perm_user_id) user_count');
-		$query->join('LEFT JOIN gdo_userpermission ON perm_id = perm_perm_id')->uncached();
-		return $query->group('perm_id, perm_name');
 	}
 	
 }

@@ -1,7 +1,7 @@
 <?php
 return array(
-'mtitle_admin_modules' => 'Module',
-'mtitle_admin_users' => 'Admin Übersicht der Benutzer',
+'list_admin_modules' => '%s Module',
+'list_admin_users' => 'Admin Übersicht aller %s Benutzer',
 ###############################################################    
 'btn_admin' => 'Admin',
 'btn_phpinfo' => 'PHPInfo',
@@ -41,8 +41,9 @@ return array(
 'msg_user_password_is_now' => 'Das Passwort dieses Nutzers lautet nun: %s',
 ################################################################
 'link_add_perm' => 'Neue Berechtigung',
-'link_grant_perm' => 'Berechtigung zuweisen',
 'link_edit_permissions' => 'Berechtigungen bearbeiten',
+'link_grant_perm' => 'Berechtigung zuweisen',
+'link_revoke_perm' => 'Berechtigung zurückweisen',
 'ft_admin_permissionadd' => 'Berechtigung hinzufügen',
 'user_count' => 'Mitglieder',
 'perm_revoke' => 'Berechtigung zurückweisen',
@@ -62,7 +63,7 @@ return array(
 'mdescr_admin_modules' => 'Module verwalten',
 'admin_user_created' => 'Der Benutzer wurde erfolgreich angelegt.',
 'link_user_edit' => 'Benutzer bearbeiten',
-'mdescr_admin_configure' => 'Modul konfigurieren',
+'mdescr_admin_configure' => 'Modul %s konfigurieren',
 ################################################################
 'msg_perm_revoked' => 'Die Berechtigung wurde zurückgewiesen.',
 );
