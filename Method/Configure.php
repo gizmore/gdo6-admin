@@ -19,6 +19,8 @@ use GDO\Language\Trans;
 use GDO\UI\GDT_Panel;
 use GDO\Core\GDT_Response;
 use GDO\Core\GDT_Module;
+use GDO\Util\Arrays;
+use GDO\Install\Installer;
 
 /**
  * Configure a module.
@@ -95,7 +97,22 @@ class Configure extends MethodForm
 	public function createForm(GDT_Form $form)
 	{
 		$mod = $this->configModule;
-// 		$form->tit
+		$deps = Installer::getDependencyModules($mod->getName());
+		$deps = array_filter($deps, function(GDO_Module $m) { return $m->getName() !== $this->configModule->getName() AND !$m->isCoreModule(); });
+		$deps = array_map(function(GDO_Module $m) { return $m->getName(); }, $deps);
+		$deps = array_map(function($nam) {
+		    $link = href('Admin', 'Configure', "&module=".urlencode($nam));
+		    $link = sprintf('<a href="%s">%s</a>', $link, html($nam));
+		    return module_enabled($nam) ?
+		    '<span class="dependency_ok">' . $link . '</span>' :
+		    '<span class="dependency_ko">' . $link . '</span>';
+		}, $deps);
+		
+		if (count($deps))
+		{
+		    $form->info(t('info_module_deps', [Arrays::implodeHuman($deps)]));
+		}
+		
 		$form->addField(GDT_Name::make('module_name')->writable(false));
 		$form->addField(GDT_Path::make('module_path')->writable(false)->initial($mod->filePath()));
 		$form->addField(GDT_Version::make('module_version')->writable(false));

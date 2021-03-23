@@ -66,4 +66,5 @@ return array(
 'mdescr_admin_configure' => 'Configura modulo',
 ################################################################
 'msg_perm_revoked' => 'Die Berechtigung wurde zurückgewiesen.',
+'info_module_deps' => 'Modul Abhängigkeiten: %s',
 );

@@ -66,4 +66,5 @@ return array(
 'mdescr_admin_configure' => 'Configure the %s module',
 ################################################################
 'msg_perm_revoked' => 'The permission has been revoked.',
+'info_module_deps' => 'This module has these dependencies: %s',
 );
