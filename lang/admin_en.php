@@ -33,7 +33,7 @@ return array(
 'version_available' => 'Version available',
 'form_div_config_vars' => 'Configuration Variables',
 'msg_module_saved' => 'Config has been saved. %s',
-'msg_modulevar_changed' => '%s changed from <i>%s</i> to <i>%s</i>.',
+'msg_modulevar_changed' => '%s changed from <strike><i>%s</i></strike> to <i>%s</i>.',
 'href_admin' => 'Admin section',
 'confirm_wipe_module' => 'Do you want to drop these tables: %s?',
 ################################################################

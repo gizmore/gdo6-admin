@@ -130,6 +130,7 @@ class Configure extends MethodForm
 		{
 			if ($gdoType->hasChanged() && $gdoType->writable && $gdoType->editable)
 			{
+				$info[] = '<br/>';
 				GDO_ModuleVar::createModuleVar($mod, $gdoType);
 				$info[] = t('msg_modulevar_changed',
 				    [$gdoType->displayLabel(),
@@ -146,7 +147,7 @@ class Configure extends MethodForm
 		}
 		
 		# Announce
-		return $this->message('msg_module_saved', [implode('<br/>', $info)])->add($this->renderPage());
+		return $this->message('msg_module_saved', [implode('', $info)])->add($this->renderPage());
 	}
 
 }
