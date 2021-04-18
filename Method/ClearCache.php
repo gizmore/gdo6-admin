@@ -26,6 +26,7 @@ final class ClearCache extends Method
 	use MethodAdmin;
 	
 	public function saveLastUrl() { return false; }
+// 	public function showInSitemap() { return false; }
 	
 	public function getPermission() { return 'staff'; }
 	
