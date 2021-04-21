@@ -1,6 +1,7 @@
 <?php
 namespace GDO\Admin\Method;
 
+use GDO\Core\Application;
 use GDO\Core\GDT_Hook;
 use GDO\Core\MethodAdmin;
 use GDO\Form\GDT_AntiCSRF;
@@ -47,10 +48,13 @@ class UserEdit extends MethodForm
 	
 	public function beforeExecute()
 	{
-	    $this->renderNavBar();
-	    $barPermissions = GDT_Bar::make()->horizontal();
-	    $barPermissions->addField(GDT_Link::make('link_edit_permissions')->href(href('Admin', 'PermissionGrant', '&form[perm_user_id]='.$this->user->getID())));
-	    GDT_Page::$INSTANCE->topTabs->addField($barPermissions);
+	    if (Application::instance()->isHTML())
+	    {
+    	    $this->renderNavBar();
+    	    $barPermissions = GDT_Bar::make()->horizontal();
+    	    $barPermissions->addField(GDT_Link::make('link_edit_permissions')->href(href('Admin', 'PermissionGrant', '&form[perm_user_id]='.$this->user->getID())));
+    	    GDT_Page::$INSTANCE->topTabs->addField($barPermissions);
+	    }
 	}
 	
 	public function getTitle()
