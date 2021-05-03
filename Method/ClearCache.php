@@ -38,6 +38,10 @@ final class ClearCache extends Method
 	
 	public function clearCache()
 	{
+	    # Retrigger assets
+	    $core = Module_Core::instance();
+	    $assetVersion = $core->cfgAssetVersion() + 0.01;
+	    $core->saveConfigVar('asset_revision', sprintf('%.02f', round($assetVersion, 2)));
 	    # Flush memcached.
 	    Cache::flush();
 	    # Flush GDO cache
@@ -46,10 +50,6 @@ final class ClearCache extends Method
 	    FileUtil::removeDir(MinifyJS::tempDirS());
 	    # Call hook
 	    GDT_Hook::callWithIPC('ClearCache');
-	    # Retrigger assets
-	    $core = Module_Core::instance();
-	    $assetVersion = $core->cfgAssetVersion() + 0.01;
-	    $core->saveConfigVar('asset_revision', sprintf('%.02f', round($assetVersion, 2)));
 	}
 	
 	private function flushAllGDOCaches()
