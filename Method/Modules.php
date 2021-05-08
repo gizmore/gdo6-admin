@@ -16,7 +16,7 @@ use GDO\Admin\GDT_ModuleAdminButton;
 /**
  * Overview of all modules in FS and DB.
  * @author gizmore
- * @version 6.10.1
+ * @version 6.10.3
  * @since 3.0.2
  */
 class Modules extends MethodTable
