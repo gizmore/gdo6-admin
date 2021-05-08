@@ -13,8 +13,9 @@ use GDO\UI\GDT_EditButton;
 /**
  * Manually create a user.
  * Only specify user_name, the rest can be done via UserEdit.
+ * 
  * @author gizmore
- * @version 6.10.1
+ * @version 6.10.3
  * @since 3.1.2
  */
 final class UserCreate extends MethodForm
@@ -38,7 +39,7 @@ final class UserCreate extends MethodForm
 			'user_name' => $form->getFormVar('user_name'),
 		])->insert();
 		GDT_Hook::callWithIPC('UserActivated', $user);
-		$linkEdit = GDT_EditButton::make('link_user_edit')->href(href('Admin', 'UserEdit', '&id='.$user->getID()));
+		$linkEdit = GDT_EditButton::make('link_user_edit')->href(href('Admin', 'UserEdit', '&user='.$user->getID()));
 		return $this->message('admin_user_created')->addField($linkEdit);
 	}
 	

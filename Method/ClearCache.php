@@ -18,8 +18,8 @@ use GDO\Core\ModuleLoader;
  * @TODO move to module core.
  * 
  * @author gizmore
- * @version 6.10
- * @since 6.01
+ * @version 6.10.3
+ * @since 6.0.1
  */
 final class ClearCache extends Method
 {
@@ -44,6 +44,7 @@ final class ClearCache extends Method
 	    $core->saveConfigVar('asset_revision', sprintf('%.02f', round($assetVersion, 2)));
 	    # Flush memcached.
 	    Cache::flush();
+	    Cache::fileFlush();
 	    # Flush GDO cache
 	    $this->flushAllGDOCaches();
 	    # Remove minified JS

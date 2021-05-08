@@ -87,6 +87,6 @@ class PermissionRevoke extends MethodForm
 		
 		$response = $affected > 0 ? $this->message('msg_perm_revoked') :
 		  $this->error('err_nothing_happened');
-		return $response->add($this->renderPage());
+		return $response->addField($this->renderPage());
 	}
 }

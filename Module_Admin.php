@@ -16,8 +16,8 @@ use GDO\UI\GDT_Page;
  * @TODO: restrict admin methods to a second admin password (like in gwf3)
  * 
  * @author gizmore
- * @version 6.10
- * @since 3.00
+ * @version 6.10.3
+ * @since 3.0.0
  */
 class Module_Admin extends GDO_Module
 {
@@ -35,7 +35,8 @@ class Module_Admin extends GDO_Module
 		if (GDO_User::current()->isAdmin())
 		{
 		    GDT_Page::$INSTANCE->rightNav->addField(
-		        GDT_Link::make('btn_admin')->label('btn_admin')->href(href('Admin', 'Modules')));
+		        GDT_Link::make('btn_admin')->label('btn_admin')->href(
+		            href('Admin', 'Modules')));
 		}
 	}
 	

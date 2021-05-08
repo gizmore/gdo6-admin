@@ -21,7 +21,7 @@ use GDO\User\GDT_User;
  * Edit a user.
  * 
  * @author gizmore
- * @version 6.10.1
+ * @version 6.10.3
  * @since 3.0.4
  * @see GDO_User
  */
@@ -95,9 +95,9 @@ class UserEdit extends MethodForm
 		if (!empty($password))
 		{
 			$this->user->saveVar('user_password', BCrypt::create($password)->__toString());
-			return $this->message('msg_user_password_is_now', [$password])->add(parent::formValidated($form));
+			return $this->message('msg_user_password_is_now', [$password])->addField(parent::formValidated($form));
 		}
-		return parent::formValidated($form)->add($this->renderPage());
+		return parent::formValidated($form)->addField($this->renderPage());
 	}
 	
 	public function onSubmit_btn_delete(GDT_Form $form)

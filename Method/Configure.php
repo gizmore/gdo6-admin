@@ -67,12 +67,12 @@ class Configure extends MethodForm
 		}
 		
 		# Response for install panel
-		$response->add($this->renderInstall());
+		$response->addField($this->renderInstall());
 		
 		# Configuration if installed
 		if ($this->configModule->isPersisted())
 		{
-			$response->add(parent::execute()); # configure
+			$response->addField(parent::execute()); # configure
 		}
 		
 		# Respond
@@ -164,7 +164,7 @@ class Configure extends MethodForm
 		}
 		
 		# Announce
-		return $this->message('msg_module_saved', [implode('', $info)])->add($this->renderPage());
+		return $this->message('msg_module_saved', [implode('', $info)])->addField($this->renderPage());
 	}
 
 }

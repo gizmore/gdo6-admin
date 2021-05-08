@@ -57,7 +57,7 @@ class Install extends MethodForm
 		{
 			if (isset($_REQUEST[$form][$button]))
 			{
-				return $this->executeButton($button)->add($this->renderPage());
+				return $this->executeButton($button)->addField($this->renderPage());
 			}
 		}
 		return $this->renderPage();
