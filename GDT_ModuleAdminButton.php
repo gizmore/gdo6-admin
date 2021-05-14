@@ -20,7 +20,6 @@ class GDT_ModuleAdminButton extends GDT_Button
 		    $this->href($href);
 			return parent::renderCell();
 		}
-		return '';
 	}
 	
 }

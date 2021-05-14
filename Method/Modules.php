@@ -30,10 +30,8 @@ class Modules extends MethodTable
 	
 	public function gdoTable() { return GDO_Module::table(); }
 	
-	/**
-	 * {@inheritDoc}
-	 * @see \GDO\Table\MethodTable::isPaginated()
-	 */
+	public function useFetchInto() { return false; }
+	
 	public function isPaginated() { return false; }
 	
 	public function getDefaultOrder() { return 'module_name'; }

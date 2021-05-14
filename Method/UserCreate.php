@@ -9,6 +9,7 @@ use GDO\Form\GDT_AntiCSRF;
 use GDO\Core\GDT_Hook;
 use GDO\Core\MethodAdmin;
 use GDO\UI\GDT_EditButton;
+use GDO\User\GDT_Username;
 
 /**
  * Manually create a user.
@@ -24,9 +25,8 @@ final class UserCreate extends MethodForm
     
 	public function createForm(GDT_Form $form)
 	{
-		$users = GDO_User::table();
 		$form->addFields([
-			$users->gdoColumn('user_name')->notNull(),
+			GDT_Username::make('user_name')->notNull()->exists(false),
 			GDT_AntiCSRF::make(),
 		]);
 		$form->actions()->addField(GDT_Submit::make());
