@@ -67,4 +67,5 @@ return array(
 ################################################################
 'msg_perm_revoked' => 'Die Berechtigung wurde zurückgewiesen.',
 'info_module_deps' => 'Modul Abhängigkeiten: %s',
+'mtitle_admin_clearcache' => 'Cache löschen',
 );

@@ -65,6 +65,7 @@ return array(
 'link_user_edit' => 'Modifica utente',
 'mdescr_admin_configure' => 'Configura modulo',
 ################################################################
-'msg_perm_revoked' => 'Die Berechtigung wurde zurückgewiesen.',
-'info_module_deps' => 'Modul Abhängigkeiten: %s',
+'msg_perm_revoked' => 'L\'autorizzazione è stata rifiutata.',
+'info_module_deps' => 'Dipendenze del modulo: %s',
+'mtitle_admin_clearcache' => 'Elimina il buffer',
 );

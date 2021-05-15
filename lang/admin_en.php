@@ -67,4 +67,5 @@ return array(
 ################################################################
 'msg_perm_revoked' => 'The permission has been revoked.',
 'info_module_deps' => 'This module has these dependencies: %s',
+'mtitle_admin_clearcache' => 'Clear Cache',
 );
