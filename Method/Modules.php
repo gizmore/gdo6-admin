@@ -28,6 +28,8 @@ class Modules extends MethodTable
 	 */
 	private $modules;
 	
+	public function getTitleLangKey() { return 'btn_modules'; }
+	
 	public function gdoTable() { return GDO_Module::table(); }
 	
 	public function useFetchInto() { return false; }

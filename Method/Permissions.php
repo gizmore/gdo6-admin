@@ -22,6 +22,11 @@ class Permissions extends MethodQueryTable
 	
 	public function getPermission() { return 'staff'; }
 	
+	public function getTableTitle()
+	{
+	    return $this->getTitle();
+	}
+	
 	public function getTitle()
 	{
 	    return t('btn_permissions');

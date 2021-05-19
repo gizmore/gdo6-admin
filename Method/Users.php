@@ -21,6 +21,8 @@ class Users extends MethodQueryTable
 {
 	use MethodAdmin;
 	
+	public function getTitleLangKey() { return 'btn_users'; }
+	
 	public function gdoTable() { return GDO_User::table(); }
 	
 	public function getPermission() { return 'staff'; }
