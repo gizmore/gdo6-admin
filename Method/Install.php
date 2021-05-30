@@ -20,7 +20,7 @@ use GDO\Core\GDT_Module;
  * @TODO Automatic DB migration for GDO. triggered by re-install module.
  * 
  * @author gizmore
- * @version 6.10.1
+ * @version 6.10.4
  * @since 3.0.0
  */
 class Install extends MethodForm
@@ -65,7 +65,14 @@ class Install extends MethodForm
 	
 	public function getTitle()
 	{
-	    return t('ft_admin_install', [$this->configModule->displayName()]);
+	    if ($this->configModule)
+	    {
+	        return t('ft_admin_install', [$this->configModule->displayName()]);
+	    }
+	    else
+	    {
+	        return t('btn_install');
+	    }
 	}
 	
 	/**
@@ -75,9 +82,11 @@ class Install extends MethodForm
 	 */
 	public function createForm(GDT_Form $form)
 	{
+	    $form->action(Configure::make()->methodHref()); # proxy via Configure
+	    
 		$form->actions()->addField(GDT_Submit::make('install')->label('btn_install'));
 
-		if ($this->configModule->isInstalled())
+		if ($this->configModule && $this->configModule->isInstalled())
 		{
 			$tables = $this->configModule->getClasses();
 			$modules = empty($tables) ? t('enum_none') : implode(', ', array_map(function($t){return Strings::rsubstrFrom($t, '\\');}, $tables));
