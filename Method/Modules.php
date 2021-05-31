@@ -36,7 +36,7 @@ class Modules extends MethodTable
 	
 	public function isPaginated() { return false; }
 	
-	public function getDefaultOrder() { return 'module_name'; }
+	public function getDefaultOrder() { return 'module_name ASC'; }
 	
 	public function getPermission() { return 'staff'; }
 	
