@@ -13,6 +13,7 @@ use GDO\Core\ModuleLoader;
 use GDO\UI\GDT_Button;
 use GDO\Util\Strings;
 use GDO\Core\GDT_Module;
+use GDO\Util\Common;
 
 /**
  * Install a module. Wipe a module. Enable and disable a module.
@@ -45,8 +46,9 @@ class Install extends MethodForm
 	
 	public function init()
 	{
-		ModuleLoader::instance()->loadModules(true, true);
-		$this->configModule = $this->gdoParameterValue('module');
+	    $loader = ModuleLoader::instance();
+		$moduleName = strtolower(Common::getRequestString('module'));
+		$this->configModule = $loader->getModule($moduleName);
 	}
 	
 	public function execute()
@@ -82,7 +84,7 @@ class Install extends MethodForm
 	 */
 	public function createForm(GDT_Form $form)
 	{
-	    $form->action(Configure::make()->methodHref()); # proxy via Configure
+	    $form->action(href('Admin', 'Configure', '&module='.Common::getRequestString('module')));
 	    
 		$form->actions()->addField(GDT_Submit::make('install')->label('btn_install'));
 

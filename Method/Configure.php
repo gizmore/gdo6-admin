@@ -21,6 +21,8 @@ use GDO\Core\GDT_Response;
 use GDO\Core\GDT_Module;
 use GDO\Util\Arrays;
 use GDO\Install\Installer;
+use GDO\Util\Common;
+use GDO\Core\GDT_Method;
 
 /**
  * Configure a module.
@@ -50,8 +52,9 @@ class Configure extends MethodForm
 	public function init()
 	{
 	    # Load
-	    ModuleLoader::instance()->loadModules(false, true);
-	    $this->configModule = $this->gdoParameterValue('module');
+	    $modules = ModuleLoader::instance()->loadModules(true, true);
+	    $moduleName = strtolower(Common::getRequestString('module'));
+	    $this->configModule = $modules[$moduleName];
 	}
 	
 	public function execute()
@@ -67,7 +70,7 @@ class Configure extends MethodForm
 		}
 		
 		# Response for install panel
-		$response->addField($this->renderInstall());
+		$response->addField(Install::make()->executeWithInit());
 		
 		# Configuration if installed
 		if ($this->configModule->isPersisted())
@@ -79,10 +82,10 @@ class Configure extends MethodForm
 		return $response;
 	}
 	
-	public function renderInstall()
-	{
-		return Install::make()->executeWithInit();
-	}
+// 	public function renderInstall()
+// 	{
+// // 		return Install::make()->executeWithInit();
+// 	}
 	
 	public function getTitle()
 	{
