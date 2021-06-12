@@ -22,13 +22,12 @@ use GDO\Core\GDT_Module;
 use GDO\Util\Arrays;
 use GDO\Install\Installer;
 use GDO\Util\Common;
-use GDO\Core\GDT_Method;
 
 /**
  * Configure a module.
  * @TODO: Move to core or make admin a core module?
  * @author gizmore
- * @version 6.10.1
+ * @version 6.10.4
  * @since 3.4.0
  */
 class Configure extends MethodForm
@@ -132,6 +131,7 @@ class Configure extends MethodForm
 				{
 					$gdoType->tooltip($key);
 				}
+				$gdoType->focusable(false);
 				$form->addField($gdoType); #->var($mod->getConfigVar($gdoType->name)));
 			}
 		}
