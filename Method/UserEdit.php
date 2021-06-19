@@ -21,13 +21,15 @@ use GDO\User\GDT_User;
  * Edit a user.
  * 
  * @author gizmore
- * @version 6.10.3
+ * @version 6.10.4
  * @since 3.0.4
  * @see GDO_User
  */
 class UserEdit extends MethodForm
 {
 	use MethodAdmin; # admin protection
+	
+	public function showInSitemap() { return false; }
 	
 	/**
 	 * @var GDO_User

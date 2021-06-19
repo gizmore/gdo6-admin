@@ -40,6 +40,7 @@ class Configure extends MethodForm
 	private $configModule;
 	
 	public function getPermission() { return 'admin'; }
+	public function showInSitemap() { return false; }
 	
 	public function gdoParameters()
 	{
@@ -137,6 +138,7 @@ class Configure extends MethodForm
 		}
 		$form->actions()->addField(GDT_Submit::make()->label('btn_save'));
 		$form->actions()->addField(GDT_AntiCSRF::make());
+		$form->action($this->href("&module=".$this->configModule->getName()));
 	}
 	
 	public function formValidated(GDT_Form $form)
