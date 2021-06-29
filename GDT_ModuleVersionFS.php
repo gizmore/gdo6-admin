@@ -12,6 +12,12 @@ final class GDT_ModuleVersionFS extends GDT_Int
 	 */
 	public function getModule() { return $this->gdo; }
 	
+	public function gdo(GDO $gdo=null)
+	{
+	    $this->var = $gdo->module_version;
+	    return parent::gdo($gdo);
+	}
+	
 	public function renderCell()
 	{
 		$module = $this->getModule();

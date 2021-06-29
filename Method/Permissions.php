@@ -6,6 +6,7 @@ use GDO\Table\GDT_Count;
 use GDO\Table\MethodQueryTable;
 use GDO\UI\GDT_Button;
 use GDO\User\GDO_Permission;
+use GDO\UI\GDT_IconButton;
 
 /**
  * Overview of permissions.
@@ -37,7 +38,7 @@ class Permissions extends MethodQueryTable
 	    $perms = GDO_Permission::table();
 		return [
 			GDT_Count::make(),
-			GDT_Button::make('btn_edit'),
+			GDT_IconButton::make('btn_edit')->icon('edit'),
 		    $perms->gdoColumn('perm_name'),
 		    $perms->gdoColumn('perm_level'),
 		    $perms->gdoColumn('perm_usercount'),

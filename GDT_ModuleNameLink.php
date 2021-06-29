@@ -17,9 +17,14 @@ final class GDT_ModuleNameLink extends GDT_Link
 	public function renderCell()
 	{
 		$this->label($this->gdo->getName());
-		$this->href(href('Admin', 'Configure',
-		    "&module=".$this->gdo->getName()));
+		$this->href(href('Admin', 'Configure', "&module=".$this->gdo->getName()));
 		return parent::renderCell();
+	}
+	
+	public function renderJSON()
+	{
+	    $this->href(href('Admin', 'Configure', "&module=".$this->gdo->getName()));
+	    return sprintf('<a href="%s">%s</a>', $this->href, $this->gdo->getName());
 	}
 	
 }

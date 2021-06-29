@@ -22,4 +22,14 @@ class GDT_ModuleAdminButton extends GDT_Button
 		}
 	}
 	
+	public function renderJSON()
+	{
+	    if ($href = $this->getModule()->href_administrate_module())
+	    {
+	        $this->href($href);
+    	    return sprintf('<a href="%s">%s</a>', $href, $this->displayLabel());
+	    }
+	}
+	
+	
 }
