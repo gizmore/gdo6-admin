@@ -16,6 +16,7 @@ use GDO\UI\GDT_Link;
 use GDO\Form\GDT_DeleteButton;
 use GDO\UI\GDT_Page;
 use GDO\User\GDT_User;
+use GDO\Util\Common;
 
 /**
  * Edit a user.
@@ -45,7 +46,12 @@ class UserEdit extends MethodForm
 	
 	public function init()
 	{
-	    $this->user = $this->gdoParameterValue('user');
+	    $this->user = $this->getUser();
+	}
+	
+	public function getUser()
+	{
+	    return GDO_User::table()->getById(Common::getGetString('user'));
 	}
 	
 	public function beforeExecute()
@@ -61,15 +67,17 @@ class UserEdit extends MethodForm
 	
 	public function getTitle()
 	{
-	    return t('ft_admin_useredit', [$this->user->displayNameLabel()]);
+	    $user = $this->getUser();
+	    return t('ft_admin_useredit', [$user->displayName()]);
 	}
 	
 	public function createForm(GDT_Form $form)
 	{
 		# Add all columns
-		foreach ($this->user->gdoColumnsCache() as $gdoType)
+	    $table = GDO_User::table();
+		foreach ($table->gdoColumnsCache() as $gdoType)
 		{
-			$form->addField($gdoType);
+			$form->addField($table->gdoColumnCopy($gdoType->name));
 		}
 		
 		# Add buttons
@@ -78,11 +86,11 @@ class UserEdit extends MethodForm
 		$form->addField(GDT_AntiCSRF::make());
 		
 		# Fill form values with user data
-		$form->withGDOValuesFrom($this->user);
-
+		$form->withGDOValuesFrom($this->getUser());
+		
 		# Patch columns a bit
 		$form->getField('user_name')->pattern(null);
-		$form->getField('user_password')->notNull(false)->initial('');
+		$form->getField('user_password')->notNull(false)->gdo(null)->initial('');
 		$form->getField('user_id')->writable(false);
 	}
 	

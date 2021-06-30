@@ -4,14 +4,13 @@ namespace GDO\Admin\Method;
 use GDO\Core\MethodAdmin;
 use GDO\Table\GDT_Count;
 use GDO\Table\MethodQueryTable;
-use GDO\UI\GDT_Button;
 use GDO\User\GDO_Permission;
 use GDO\UI\GDT_IconButton;
 
 /**
  * Overview of permissions.
  * 
- * @version 6.10.1
+ * @version 6.10.4
  * @since 6.0.0
  * @author gizmore
  */

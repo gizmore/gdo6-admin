@@ -22,6 +22,7 @@ use GDO\Core\GDT_Module;
 use GDO\Util\Arrays;
 use GDO\Install\Installer;
 use GDO\Util\Common;
+use GDO\UI\GDT_Container;
 
 /**
  * Configure a module.
@@ -118,8 +119,10 @@ class Configure extends MethodForm
 		
 		$form->addField(GDT_Name::make('module_name')->writable(false));
 		$form->addField(GDT_Path::make('module_path')->writable(false)->initial($mod->filePath()));
-		$form->addField(GDT_Version::make('module_version')->writable(false));
-		$form->addField(GDT_Version::make('version_available')->writable(false)->initial($mod->module_version));
+		$c = GDT_Container::make('versions')->horizontal(false);
+		$c->addField(GDT_Version::make('module_version')->writable(false));
+		$c->addField(GDT_Version::make('version_available')->writable(false)->initial($mod->module_version));
+		$form->addField($c->flex());
 		$form->withGDOValuesFrom($this->configModule);
 		if ($config = $mod->getConfigCache())
 		{
