@@ -151,7 +151,7 @@ class Configure extends MethodForm
 		# Update config
 		$info = [];
 		$moduleVarsChanged = false;
-		foreach ($form->getFields() as $gdoType)
+		foreach ($form->getFieldsRec() as $gdoType)
 		{
 			if ($gdoType->hasChanged() && $gdoType->writable && $gdoType->editable)
 			{
