@@ -90,17 +90,30 @@ class Configure extends MethodForm
 	
 	public function getTitle()
 	{
-	    return t('ft_admin_configure', [$this->configModule->displayName()]);
+	    if ($this->configModule)
+	    {
+	        return t('ft_admin_configure', [$this->configModule->displayName()]);
+	    }
+	    else
+	    {
+	        return t('err_module');
+	    }
 	}
 	
 	public function getDescription()
 	{
-	    return t('mdescr_admin_configure', [$this->configModule->displayName()]);
+	    if ($this->configModule)
+	    {
+	        return t('mdescr_admin_configure', [$this->configModule->displayName()]);
+	    }
 	}
 	
 	public function createForm(GDT_Form $form)
 	{
-		$mod = $this->configModule;
+		if (!($mod = $this->configModule))
+		{
+		    return;
+		}
 		$deps = Installer::getDependencyModules($mod->getName());
 		$deps = array_filter($deps, function(GDO_Module $m) { return $m->getName() !== $this->configModule->getName() AND !$m->isCoreModule(); });
 		$deps = array_map(function(GDO_Module $m) { return $m->getName(); }, $deps);

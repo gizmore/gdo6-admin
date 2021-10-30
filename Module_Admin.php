@@ -42,10 +42,7 @@ class Module_Admin extends GDO_Module
 	
 	public function onIncludeScripts()
 	{
-	    if (mo() === 'Admin')
-	    {
-	        $this->addCSS('css/admin.css');
-	    }
+        $this->addCSS('css/admin.css');
 	}
 	
 }

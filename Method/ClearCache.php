@@ -7,7 +7,7 @@ use GDO\Core\GDT_Hook;
 use GDO\Core\Method;
 use GDO\DB\Cache;
 use GDO\File\FileUtil;
-use GDO\Util\MinifyJS;
+use GDO\Javascript\MinifyJS;
 use GDO\Core\Module_Core;
 use GDO\Core\Website;
 use GDO\Core\ModuleLoader;
