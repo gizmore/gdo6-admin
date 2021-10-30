@@ -36,11 +36,11 @@ class Permissions extends MethodQueryTable
 	{
 	    $perms = GDO_Permission::table();
 		return [
-			GDT_Count::make(),
+// 			GDT_Count::make(),
 			GDT_IconButton::make('btn_edit')->icon('edit'),
 		    $perms->gdoColumn('perm_name'),
-		    $perms->gdoColumn('perm_level'),
 		    $perms->gdoColumn('perm_usercount'),
+		    $perms->gdoColumn('perm_level'),
 		];
 	}
 	
