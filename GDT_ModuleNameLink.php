@@ -2,7 +2,6 @@
 namespace GDO\Admin;
 
 use GDO\UI\GDT_Link;
-use GDO\DB\GDT_String;
 
 /**
  * Is searchable, filterable, orderarble because it's the modulename.
