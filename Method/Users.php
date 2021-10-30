@@ -14,8 +14,8 @@ use GDO\User\GDO_User;
  * @author gizmore
  * @see GDO_User
  * @see GDT_Table
- * @version 6.10
- * @since 6.02
+ * @version 6.10.6
+ * @since 6.0.2
  */
 class Users extends MethodQueryTable
 {
