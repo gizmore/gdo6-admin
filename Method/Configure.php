@@ -94,10 +94,6 @@ class Configure extends MethodForm
 	    {
 	        return t('ft_admin_configure', [$this->configModule->displayName()]);
 	    }
-	    else
-	    {
-	        return t('err_module');
-	    }
 	}
 	
 	public function getDescription()

@@ -13,7 +13,6 @@ return array(
 'btn_login_as' =>'Login il…',
 'btn_reinstall' =>'Installazione nuova',
 ################################################################
-'err_module' =>'Modulo sconosciuto.',
 'version_db' => 'Vers.',
 'version_fs' => 'V.FS.',
 'btn_install' =>'Installare',

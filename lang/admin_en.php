@@ -13,7 +13,6 @@ return array(
 'btn_login_as' => 'Login as…',
 'btn_reinstall' => 'Reinstall',
 ################################################################
-'err_module' => 'Unknown module.',
 'version_db' => 'Vers.',
 'version_fs' => 'V.FS.',
 'btn_install' => 'Install',
