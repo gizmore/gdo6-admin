@@ -21,7 +21,7 @@ use GDO\Util\Common;
  * @TODO Automatic DB migration for GDO. triggered by re-install module.
  * 
  * @author gizmore
- * @version 6.10.5
+ * @version 6.10.7
  * @since 3.0.0
  */
 class Install extends MethodForm
