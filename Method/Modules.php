@@ -60,7 +60,7 @@ class Modules extends MethodTable
 			GDT_Sort::make('module_sort'),
 // 			GDT_Int::make('module_priority')->unsigned()->label('priority'),
 			GDT_Checkbox::make('module_enabled')->label('enabled'),
-			GDT_Decimal::make('module_version')->label('version_db'),
+			GDT_Decimal::make('module_version')->digits(1, 2)->label('version_db'),
 			GDT_ModuleVersionFS::make('module_version_fs')->label('version_fs'),
 			GDT_ModuleNameLink::make('module_name')->label('name'),
 			GDT_ModuleAdminButton::make('administrate_module')->label('btn_admin'),
