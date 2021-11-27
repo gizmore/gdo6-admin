@@ -75,9 +75,9 @@ class UserEdit extends MethodForm
 	{
 		# Add all columns
 	    $table = GDO_User::table();
-		foreach ($table->gdoColumnsCache() as $gdoType)
+		foreach ($table->gdoColumnsCache() as $gdt)
 		{
-			$form->addField($table->gdoColumnCopy($gdoType->name));
+			$form->addField($table->gdoColumnCopy($gdt->name));
 		}
 		
 		# Add buttons

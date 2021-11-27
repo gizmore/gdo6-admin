@@ -136,16 +136,16 @@ class Configure extends MethodForm
 		if ($config = $mod->getConfigCache())
 		{
 			$form->addField(GDT_Divider::make('div1')->label('form_div_config_vars'));
-			foreach ($config as $gdoType)
+			foreach ($config as $gdt)
 			{
-				$gdoType->label('cfg_' . $gdoType->name);
-				$key = 'cfg_tt_' . $gdoType->name;
+				$gdt->label('cfg_' . $gdt->name);
+				$key = 'cfg_tt_' . $gdt->name;
 				if (Trans::hasKey($key))
 				{
-					$gdoType->tooltip($key);
+					$gdt->tooltip($key);
 				}
-				$gdoType->focusable(false);
-				$form->addField($gdoType); #->var($mod->getConfigVar($gdoType->name)));
+				$gdt->focusable(false);
+				$form->addField($gdt); #->var($mod->getConfigVar($gdt->name)));
 			}
 		}
 		$form->actions()->addField(GDT_Submit::make()->label('btn_save'));
@@ -160,16 +160,16 @@ class Configure extends MethodForm
 		# Update config
 		$info = [];
 		$moduleVarsChanged = false;
-		foreach ($form->getFieldsRec() as $gdoType)
+		foreach ($form->getFieldsRec() as $gdt)
 		{
-			if ($gdoType->hasChanged() && $gdoType->writable && $gdoType->editable)
+			if ($gdt->hasChanged() && $gdt->writable && $gdt->editable)
 			{
 				$info[] = '<br/>';
-				GDO_ModuleVar::createModuleVar($mod, $gdoType);
+				GDO_ModuleVar::createModuleVar($mod, $gdt);
 				$info[] = t('msg_modulevar_changed',
-				    [$gdoType->displayLabel(),
-				        $gdoType->displayValue($gdoType->initial),
-				        $gdoType->displayValue($gdoType->getVar())]);
+				    [$gdt->displayLabel(),
+				        $gdt->displayValue($gdt->initial),
+				        $gdt->displayValue($gdt->getVar())]);
 				$moduleVarsChanged = true;
 			}
 		}
