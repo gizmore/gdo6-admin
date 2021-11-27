@@ -51,7 +51,7 @@ class UserEdit extends MethodForm
 	
 	public function getUser()
 	{
-	    return GDO_User::table()->getById(Common::getGetString('user'));
+	    return GDO_User::table()->getById(Common::getRequestString('user'));
 	}
 	
 	public function beforeExecute()
