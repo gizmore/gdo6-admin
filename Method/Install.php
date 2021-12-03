@@ -44,7 +44,7 @@ class Install extends MethodForm
 	    ];
 	}
 	
-	public function init()
+	public function onInit()
 	{
 	    $loader = ModuleLoader::instance();
 		$moduleName = strtolower(Common::getRequestString('module'));

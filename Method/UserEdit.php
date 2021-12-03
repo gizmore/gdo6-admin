@@ -44,7 +44,7 @@ class UserEdit extends MethodForm
 	    ];
 	}
 	
-	public function init()
+	public function onInit()
 	{
 	    $this->user = $this->getUser();
 	}

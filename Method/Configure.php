@@ -50,7 +50,7 @@ class Configure extends MethodForm
 	    ];
 	}
 	
-	public function init()
+	public function onInit()
 	{
 	    # Load
 	    $modules = ModuleLoader::instance()->loadModules(true, true);

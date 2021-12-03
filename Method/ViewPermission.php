@@ -44,9 +44,9 @@ class ViewPermission extends MethodQueryTable
 	    ];
 	}
 	
-	public function init()
+	public function onInit()
 	{
-		parent::init();
+		parent::onInit();
 		$this->permission = $this->gdoParameterValue('permission');
 	}
 	
