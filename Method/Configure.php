@@ -83,11 +83,6 @@ class Configure extends MethodForm
 		return $response;
 	}
 	
-// 	public function renderInstall()
-// 	{
-// // 		return Install::make()->executeWithInit();
-// 	}
-	
 	public function getTitle()
 	{
 	    if ($this->configModule)
