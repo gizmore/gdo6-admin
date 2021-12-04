@@ -26,9 +26,9 @@ use GDO\UI\GDT_Container;
 
 /**
  * Configure a module.
- * @TODO: Move to core or make admin a core module?
+ * @TODO: Move Admin.Configure to core or make Admin a core module?
  * @author gizmore
- * @version 6.10.4
+ * @version 6.11.0
  * @since 3.4.0
  */
 class Configure extends MethodForm
