@@ -18,7 +18,7 @@ use GDO\Core\ModuleLoader;
  * @TODO move to module core.
  * 
  * @author gizmore
- * @version 6.10.3
+ * @version 6.11.1
  * @since 6.0.1
  */
 final class ClearCache extends Method
@@ -26,7 +26,6 @@ final class ClearCache extends Method
 	use MethodAdmin;
 	
 	public function saveLastUrl() { return false; }
-// 	public function showInSitemap() { return false; }
 	
 	public function getPermission() { return 'staff'; }
 	
@@ -40,7 +39,7 @@ final class ClearCache extends Method
 	{
 	    # Retrigger assets
 	    $core = Module_Core::instance();
-	    $assetVersion = $core->cfgAssetVersion() + 0.01;
+	    $assetVersion = $core->cfgAssetVersion() + 0.01; # client cache
 	    $core->saveConfigVar('asset_revision', sprintf('%.02f', round($assetVersion, 2)));
 	    # Flush memcached.
 	    Cache::flush();
