@@ -27,6 +27,7 @@ use GDO\UI\GDT_Container;
 /**
  * Configure a module.
  * @TODO: Move Admin.Configure to core or make Admin a core module?
+ * 
  * @author gizmore
  * @version 6.11.0
  * @since 3.4.0
@@ -172,6 +173,7 @@ class Configure extends MethodForm
 		if ($moduleVarsChanged)
 		{
 			Cache::flush();
+			Cache::fileFlush();
 			GDT_Hook::callWithIPC('ModuleVarsChanged', $mod);
 		}
 		

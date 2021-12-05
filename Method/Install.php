@@ -123,8 +123,9 @@ class Install extends MethodForm
 		{
 			return parent::formInvalid($form);
 		}
-		$response = call_user_func(array($this, "execute_$button"));
-		Cache::remove('gdo_modules');
+		$response = call_user_func([$this, "execute_$button"]);
+		Cache::flush();
+		Cache::fileFlush();
 		$this->resetForm();
 		return $response;
 	}
