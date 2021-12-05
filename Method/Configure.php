@@ -29,7 +29,7 @@ use GDO\UI\GDT_Container;
  * @TODO: Move Admin.Configure to core or make Admin a core module?
  * 
  * @author gizmore
- * @version 6.11.0
+ * @version 6.11.1
  * @since 3.4.0
  */
 class Configure extends MethodForm
@@ -164,8 +164,8 @@ class Configure extends MethodForm
 				GDO_ModuleVar::createModuleVar($mod, $gdt);
 				$info[] = t('msg_modulevar_changed',
 				    [$gdt->displayLabel(),
-				        $gdt->displayValue($gdt->initial),
-				        $gdt->displayValue($gdt->getVar())]);
+				        $gdt->displayVar($gdt->initial),
+				        $gdt->display()]);
 				$moduleVarsChanged = true;
 			}
 		}
