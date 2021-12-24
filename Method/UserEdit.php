@@ -60,7 +60,7 @@ class UserEdit extends MethodForm
 	    {
     	    $this->renderNavBar();
     	    $barPermissions = GDT_Bar::make()->horizontal();
-    	    $barPermissions->addField(GDT_Link::make('link_edit_permissions')->href(href('Admin', 'PermissionGrant', '&form[perm_user_id]='.$this->user->getID())));
+    	    $barPermissions->addField(GDT_Link::make('link_edit_permissions')->href(href('Admin', 'PermissionGrant', '&_form[perm_user_id]='.$this->user->getID())));
     	    GDT_Page::$INSTANCE->topTabs->addField($barPermissions);
 	    }
 	}
