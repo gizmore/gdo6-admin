@@ -15,7 +15,7 @@ use GDO\Form\GDT_DeleteButton;
 
 /**
  * View all users with a permission.
- * @version 6.10.1
+ * @version 6.10.2
  * @since 3.0.2
  * @author gizmore
  */
@@ -63,8 +63,10 @@ class ViewPermission extends MethodQueryTable
 	
 	public function getQuery()
 	{
-		return $this->gdoTable()->select('gdo_user.*, gdo_userpermission.*')->
-		joinObject('perm_user_id')->where('perm_perm_id='.$this->permission->getID())->uncached();
+		return $this->gdoTable()->
+			select('perm_user_id_t.*, gdo_userpermission.*')->
+			where('perm_perm_id='.$this->permission->getID())->
+			uncached();
 	}
     
 	public function execute()

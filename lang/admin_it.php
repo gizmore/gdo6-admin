@@ -67,4 +67,6 @@ return array(
 'msg_perm_revoked' => 'L\'autorizzazione è stata rifiutata.',
 'info_module_deps' => 'Dipendenze del modulo: %s',
 'mtitle_admin_clearcache' => 'Elimina il buffer',
+################################################################
+'list_admin_viewpermission' => '%s utenti hanno questa autorizzazione',
 );
