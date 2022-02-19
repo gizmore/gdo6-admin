@@ -32,12 +32,12 @@ final class GDT_ModuleVersionFS extends GDT_Float
 // 		return sprintf('<div%s>%.02f</div>', $class, $this->gdo->module_version);
 // 	}
 
-// 	public function gdoCompare(GDO $a, GDO $b)
-// 	{
-// 		$va = $a->module_version;
-// 		$vb = $b->module_version;
-// 		return $va == $vb ? 0 : ($va < $vb ? -1 : 1);
-// 	}
+	public function gdoCompare(GDO $a, GDO $b)
+	{
+		$va = $a->module_version;
+		$vb = $b->module_version;
+		return $va == $vb ? 0 : ($va < $vb ? -1 : 1);
+	}
 	
 	public function getVar()
 	{
