@@ -145,7 +145,7 @@ class Configure extends MethodForm
 			}
 		}
 		$form->actions()->addField(GDT_Submit::make()->label('btn_save'));
-		$form->actions()->addField(GDT_AntiCSRF::make());
+		$form->addField(GDT_AntiCSRF::make());
 		$form->action($this->href("&module=".$this->configModule->getName()));
 	}
 	
