@@ -47,7 +47,7 @@ class Install extends MethodForm
 	public function onInit()
 	{
 	    $loader = ModuleLoader::instance();
-		$moduleName = strtolower(Common::getRequestString('module'));
+		$moduleName = strtolower(Common::getRequestString('module', ''));
 		$this->configModule = $loader->getModule($moduleName);
 	}
 	
